@@ -108,13 +108,6 @@ function App() {
 
         <Route element={<DefaultLayout />}>
           <Route index element={<DashBoardHome />} />
-          {/* <Route path="/customerlist" element={<CustomerList customerData={customerData} />} /> */}
-          {/* <Route path="/customerlist/:accountNo" element={
-            <Suspense fallback={<Loader />}>
-              <CustomerDetailsData customerData={customerData} />
-            </Suspense>
-          } /> */}
-          {/* <Route index element={<ECommerce />} /> */}
           {routes.map(({ path, component: Component }) => (
             <Route
               key={path}
