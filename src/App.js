@@ -102,8 +102,8 @@ function App() {
     <>
       <Toaster position='top-right' reverseOrder={false} containerClassName='overflow-auto' />
       <Routes>
-        <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/auth/signup" element={<SignUp />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboardui" element={<DashboardElements />} />
 
         <Route element={<DefaultLayout />}>

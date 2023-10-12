@@ -5,20 +5,18 @@ import TableOne from './TableOne';
 import TableThree from './TableThree';
 import TableTwo from './TableTwo';
 import Settings from '../pages/Settings';
-import Chart from '../pages/Chart';
 import Buttons from '../pages/UiElements/Buttons';
 import Alerts from '../pages/UiElements/Alerts';
 
 const DashboardElements = () => {
     return (
-        <div>
+        <div className=' overflow-auto'>
             <FormElements />
             <FormLayout />
             <TableOne />
             <TableTwo />
             <TableThree />
             <Settings/>
-            <Chart/>
             <Alerts/>
             <Buttons/>
         </div>

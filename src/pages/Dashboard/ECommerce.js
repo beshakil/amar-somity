@@ -1,12 +1,9 @@
-import CardFour from '../../components/CardFour.jsx';
-import CardOne from '../../components/CardOne.jsx';
-import CardThree from '../../components/CardThree.jsx';
-import CardTwo from '../../components/CardTwo.jsx';
-import ChartOne from '../../components/ChartOne.jsx';
-import ChartThree from '../../components/ChartThree.jsx';
-import ChartTwo from '../../components/ChartTwo.jsx';
-import ChatCard from '../../components/ChatCard.jsx';
-import TableOne from '../../components/TableOne.jsx';
+import CardFour from '../../components/CardFour.js';
+import CardOne from '../../components/CardOne.js';
+import CardThree from '../../components/CardThree.js';
+import CardTwo from '../../components/CardTwo.js';
+import ChatCard from '../../components/ChatCard.js';
+import TableOne from '../../components/TableOne.js';
 
 const ECommerce = () => {
   return (
