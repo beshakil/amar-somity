@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const LoanCategory = () => {
     return (
         <div>
-            DPS
+LoanCategory
         </div>
     );
 };
 
-export default DPS;
+export default LoanCategory;

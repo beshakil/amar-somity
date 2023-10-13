@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const UserType = () => {
     return (
         <div>
-            DPS
+            UserType
         </div>
     );
 };
 
-export default DPS;
+export default UserType;

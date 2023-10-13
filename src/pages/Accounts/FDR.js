@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const FDR = () => {
     return (
         <div>
-            DPS
+            FDR
         </div>
     );
 };
 
-export default DPS;
+export default FDR;

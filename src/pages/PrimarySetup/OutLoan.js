@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Deposit = () => {
+const OutLoan = () => {
     return (
         <div>
-            Deposit
+            OutLoan
         </div>
     );
 };
 
-export default Deposit;
+export default OutLoan;

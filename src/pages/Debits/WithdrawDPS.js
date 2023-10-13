@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Salary = () => {
+const WithdrawDPS = () => {
     return (
         <div>
-            salary
+            WithdrawDPS
         </div>
     );
 };
 
-export default Salary;
+export default WithdrawDPS;

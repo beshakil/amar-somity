@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const StaffList = () => {
     return (
         <div>
-            DPS
+            StaffList
         </div>
     );
 };
 
-export default DPS;
+export default StaffList;

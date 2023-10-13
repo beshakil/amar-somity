@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const AreaList = () => {
     return (
         <div>
-            DPS
+            AreaList
         </div>
     );
 };
 
-export default DPS;
+export default AreaList;

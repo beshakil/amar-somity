@@ -4,15 +4,22 @@ import Logo from '../assets/images/logo/logo.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
 import { RxDashboard } from "react-icons/rx";
 import { useTranslation } from 'react-i18next';
-import { FaUserShield, FaChartPie, FaSpa, FaUsers, FaUserPlus, FaHandsHelping, FaChartLine, FaSms, FaKey, FaRegChartBar } from "react-icons/fa";
-import { FaMoneyBillTrendUp, FaMoneyBills } from "react-icons/fa6";
+import { FaUserShield, FaChartPie, FaSpa, FaUsers, FaUserPlus, FaHandsHelping, FaChartLine, FaSms, FaKey, FaRegChartBar, FaRegWindowClose, FaUserFriends, FaMobileAlt } from "react-icons/fa";
+import { FaMoneyBillTrendUp, FaMoneyBills, FaMapLocationDot, FaMoneyBillWheat } from "react-icons/fa6";
 import { BsListOl, BsListUl, BsCreditCardFill, BsPersonFillGear } from "react-icons/bs";
-import { MdKeyboardArrowDown, MdSettings, MdAccountBalanceWallet, MdAccountBalance, MdOutlineAddCircle, MdAutorenew, MdLogout } from "react-icons/md";
-import { PiUserListFill } from "react-icons/pi";
+import { MdKeyboardArrowDown, MdOutlineSavings, MdSettings, MdAccountBalanceWallet, MdAccountBalance, MdOutlineAddCircle, MdAutorenew, MdLogout } from "react-icons/md";
+import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
+import { BiCollection } from "react-icons/bi";
 import { ImCalculator } from "react-icons/im";
-import { TbSquareRoundedNumber0Filled } from "react-icons/tb";
+import { PiUserListFill } from "react-icons/pi";
+import { TbSquareRoundedNumber0Filled, TbCategory, TbFileInvoice } from "react-icons/tb";
 import { GiTakeMyMoney } from "react-icons/gi";
-import { PiPackageFill } from "react-icons/pi";
+import { PiPackageFill, PiUserCircleGearFill } from "react-icons/pi";
+import { VscSettings, VscCloseAll } from "react-icons/vsc";
+import { GoGitBranch } from "react-icons/go";
+import { ImArrowUpLeft2, ImArrowDownRight2 } from "react-icons/im";
+import { AiFillCalculator } from "react-icons/ai";
+import { RiBankFill, RiCloseCircleFill } from "react-icons/ri";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
@@ -74,10 +81,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-    >
-      {/* <!-- SIDEBAR HEADER --> */}
+      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
 
@@ -107,61 +111,39 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </svg>
         </button>
       </div>
-      {/* <!-- SIDEBAR HEADER --> */}
-
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-        {/* <!-- Sidebar Menu --> */}
         <nav className="mt-5 py-4 px-4 lg:mt-0 lg:px-6">
-          {/* <!-- Menu Group --> */}
           <div>
-            <h3 className={`mb-4 ml-4 text-sm font-semibold text-bodydark2 ${banglaFontClass} text-2xl}`}>
-              {t('menu')}
-            </h3>
-
+            <h3 className={`mb-4 ml-4 text-sm font-semibold text-bodydark2 ${banglaFontClass} text-2xl}`}>{t('menu')}</h3>
             <ul className="mb-6 flex flex-col gap-1.5">
-              {/* <!-- Menu Item Dashboard --> */}
               <NavLink
                 onClick={handleSideMenu}
                 to="/"
                 className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/' ||
                   pathname.includes('dashboard')) &&
-                  'bg-graydark dark:bg-meta-4'
-                  }`}
-              >
-                <RxDashboard
-                  className='text-lg'
-                />
+                  'bg-graydark dark:bg-meta-4'}`}>
+                <RxDashboard className='text-lg'/>
                 {t('dashboard')}
               </NavLink>
 
-              <SidebarLinkGroup
-                activeCondition={
-                  pathname === '/adduser' || pathname === '/userlist'
-                }
-              >
-                {(handleClick, open) => {
+              <SidebarLinkGroup activeCondition={ pathname === '/branch-list' || pathname === '/staff-list' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-list' || pathname === 'mobile-banking'}>
+                {(handleClick, open) => { 
                   return (
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/adduser' || pathname === '/userlist' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/branch-list' || pathname === '/staff-list' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' ? 'bg-graydark dark:bg-meta-4' : "")}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
                             : setSidebarExpanded(true);
-                        }}
-                      >
-                        <FaUserShield className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
-                        {t('user')}
+                        }}>
+                        <VscSettings className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
+                        {t('primarySetup')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
                       </NavLink>
-                      {/* <!-- Dropdown Menu Start --> */}
-
-                      <div
-                        className={`translate  transform overflow-hidden ${!open && 'hidden'
-                          }`}
-                      >
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li className={`${banglaFontClass}`}>
                             <NavLink
@@ -169,9 +151,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
                               <FaUserPlus className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
                               {t('addNew')}
                             </NavLink>
@@ -182,27 +162,151 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
                               <PiUserListFill className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
                               {t('userList')}
                             </NavLink>
                           </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/branch-list"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <GoGitBranch className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('BranchList')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/bank-list"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <RiBankFill className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('bankList')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/mobile-banking"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMobileAlt className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('MobileBanking')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/staff-list"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUserFriends className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('StaffList')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/area-list"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMapLocationDot className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('AreaList')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/director-list"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUserShield className={`text-xl ${currentLanguage === 'bn' ? "-mt-[5px]" : "-mt-[2px]"}`} />
+                              {t('DirectorList')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/out-loan"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <AiFillCalculator className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              <p className='ml-[0px]'>{t('OutLoan')}</p>
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/loan-category"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <TbCategory className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('LoanCategory')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/voucher-category"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <TbFileInvoice className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('VoucherCategory')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/fdr-scheme"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMoneyBillWheat className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('FDRScheme')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/dps-scheme"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMoneyBillTrendUp className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('DPSScheme')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/user-type"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <PiUserCircleGearFill className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('UserType')}
+                            </NavLink>
+                          </li>
                         </ul>
                       </div>
-
-                      {/* <!-- Dropdown Menu End --> */}
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
 
-              <SidebarLinkGroup
-                activeCondition={
-                  pathname === '/addcustomer' || pathname === '/customerlist' || pathname === '/customersheet' || pathname === '/customerleaser'
-                }
-              >
+              <SidebarLinkGroup activeCondition={ pathname === '/addcustomer' || pathname === '/customerlist'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
@@ -213,19 +317,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
+                            : setSidebarExpanded(true);}}>
                         <FaUsers className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('customers')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
                       </NavLink>
-                      {/* <!-- Dropdown Menu Start --> */}
-
-                      <div
-                        className={`translate  transform overflow-hidden ${!open && 'hidden'
-                          }`}
-                      >
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li className={`${banglaFontClass}`}>
                             <NavLink
@@ -233,9 +330,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
                               <FaUserPlus className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
                               {t('addNew')}
                             </NavLink>
@@ -246,99 +341,45 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
                               <PiUserListFill className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
                               {t('customerList')}
                             </NavLink>
                           </li>
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/customersheet"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <BsListOl className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('customerSheet')}
-                            </NavLink>
-                          </li>
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/customerleaser"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <BsListUl className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('customerLeaser')}
-                            </NavLink>
-                          </li>
                         </ul>
                       </div>
-
-                      {/* <!-- Dropdown Menu End --> */}
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
 
-              <SidebarLinkGroup
-                activeCondition={pathname === '/deposit' || pathname === '/dps' || pathname === '/loan' || pathname === '/fixeddeposit' || pathname === '/insurance'}
-              >
+              <SidebarLinkGroup activeCondition={pathname === '/general-account' || pathname === '/dps' || pathname === '/loan' || pathname === '/fdr' || pathname === '/insurance'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/deposit' || pathname === '/dps' || pathname === '/loan' || pathname === '/fixeddeposit' || pathname === '/insurance' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/general-account' || pathname === '/dps' || pathname === '/loan' || pathname === '/fdr' || pathname === '/insurance' ? 'bg-graydark dark:bg-meta-4' : "")}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
+                            : setSidebarExpanded(true);}}>
                         <MdAccountBalanceWallet className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('accounts')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
                       </NavLink>
-                      {/* <!-- Dropdown Menu Start --> */}
-
-                      <div
-                        className={`translate  transform overflow-hidden ${!open && 'hidden'
-                          }`}
-                      >
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li className={`${banglaFontClass}`}>
                             <NavLink
-                              to="/deposit"
+                              to="/general-account"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
                               <MdAccountBalanceWallet className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
-                              {t('deposit')}
-                            </NavLink>
-                          </li>
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/dps"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <FaMoneyBillTrendUp className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('dps')}
+                              {t('GeneralAccounts')}
                             </NavLink>
                           </li>
                           <li className={`${banglaFontClass}`}>
@@ -347,24 +388,31 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
                               <ImCalculator className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
                               {t('loan')}
                             </NavLink>
                           </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
-                              to="/fixeddeposit"
+                              to="/dps"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
+                              <FaMoneyBillTrendUp className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('dps')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/fdr"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
                               <FaChartPie className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('fixedDeposit')}
+                              {t('fdrScheme')}
                             </NavLink>
                           </li>
                           <li className={`${banglaFontClass}`}>
@@ -373,222 +421,345 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <FaSpa className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                                (isActive && '!text-white')}>
+                              <FaSpa  className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
                               {t('insurance')}
                             </NavLink>
                           </li>
                         </ul>
                       </div>
-
-                      {/* <!-- Dropdown Menu End --> */}
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
 
-              <SidebarLinkGroup
-                activeCondition={pathname === '/addbank' || pathname === '/banklist'}
-              >
+              <SidebarLinkGroup activeCondition={pathname === '/deposit-general-account' || pathname === '/common-collection' || pathname === '/installment-collection' || pathname === '/dps-collection' || pathname === '/fdr-collection' || pathname === '/bank-withdraw'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/addbank' || pathname === '/banklist' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/deposit-general-account' || pathname === '/common-collection' || pathname === '/installment-collection' || pathname === '/fdr-collection' || pathname === '/dps-collection' || pathname === '/bank-withdraw' ? 'bg-graydark dark:bg-meta-4' : "")}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                        <MdAccountBalance className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
-                        {t('bankTransaction')}
+                            : setSidebarExpanded(true);}}>
+                        <IoArrowRedo className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
+                        {t('Credits')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
                       </NavLink>
-                      {/* <!-- Dropdown Menu Start --> */}
-
-                      <div
-                        className={`translate  transform overflow-hidden ${!open && 'hidden'
-                          }`}
-                      >
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li className={`${banglaFontClass}`}>
                             <NavLink
-                              to="/addbank"
+                              to="/common-collection"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <MdOutlineAddCircle className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
-                              {t('addNew')}
+                                (isActive && '!text-white')}>
+                              <BiCollection className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('CommonCollection')}
                             </NavLink>
                           </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
-                              to="/banklist"
+                              to="/deposit-general-account"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <BsListUl className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('bankList')}
-                            </NavLink>
-                          </li>
-                        </ul>
-                      </div>
-
-                      {/* <!-- Dropdown Menu End --> */}
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup>
-
-              <SidebarLinkGroup
-                activeCondition={
-                  pathname === '/dailytransactions'
-                }
-              >
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <NavLink
-                        to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/dailytransactions' ? 'bg-graydark dark:bg-meta-4' : "")}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                        <FaChartLine className={`text-lg ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
-                        {t('transactions')}
-                        <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
-                      </NavLink>
-                      {/* <!-- Dropdown Menu Start --> */}
-
-                      <div
-                        className={`translate  transform overflow-hidden ${!open && 'hidden'
-                          }`}
-                      >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/dailytransactions"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <FaRegChartBar className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
-                              {t('dailyTransactions')}
-                            </NavLink>
-                          </li>
-                        </ul>
-                      </div>
-
-                      {/* <!-- Dropdown Menu End --> */}
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup>
-
-              <SidebarLinkGroup
-                activeCondition={pathname === '/paymentnumber' || pathname === '/requestlist'}>
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <NavLink
-                        to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/paymentnumber' || pathname === '/requestlist' ? 'bg-graydark dark:bg-meta-4' : "")}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                        <BsCreditCardFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
-                        {t('onlinePayment')}
-                        <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
-                      </NavLink>
-                      {/* <!-- Dropdown Menu Start --> */}
-
-                      <div
-                        className={`translate  transform overflow-hidden ${!open && 'hidden'
-                          }`}
-                      >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/paymentnumber"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              <TbSquareRoundedNumber0Filled className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
-                              {t('paymentNumber')}
+                                (isActive && '!text-white')}>
+                              <MdAccountBalanceWallet className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('DepositGeneralAccount')}
                             </NavLink>
                           </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
-                              to="/requestlist"
+                              to="/installment-collection"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
+                                (isActive && '!text-white')}>
+                              <ImCalculator className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('InstallmentCollection')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/dps-collection"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMoneyBillTrendUp className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('DPSCollection')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/fdr-collection"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaChartPie className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('FDRCollection')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/bank-withdraw"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <RiBankFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('BankWithdraw')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/request-list"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
                               <BsListUl className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
                               {t('requestList')}
                             </NavLink>
                           </li>
                         </ul>
                       </div>
-
-                      {/* <!-- Dropdown Menu End --> */}
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
 
-              <NavLink
-                to="/salary"
-                onClick={handleSideMenu}
-                className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/salary' ? 'bg-graydark dark:bg-meta-4' : "")}`}
-              >
-                <FaMoneyBills className={`text-xl ${currentLanguage === 'bn' ? "-mt-[2px]" : "-mt-[4px]"}`} />
-                {t('salary')}
-              </NavLink>
+              <SidebarLinkGroup activeCondition={pathname === '/withdraw-general-ac' || pathname === '/withdraw-dps' || pathname === '/dps-closing' || pathname === '/fdr-profit-withdraw' || pathname === '/fdr-balance-withdraw' || pathname === '/fdr-closing' || pathname === '/bank-deposit'}>
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/withdraw-general-ac' || pathname === '/withdraw-dps' || pathname === '/dps-closing' || pathname === '/fdr-profit-withdraw' || pathname === '/fdr-balance-withdraw' || pathname === '/fdr-closing' || pathname === '/bank-deposit' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);}}>
+                        <IoArrowUndo className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
+                        {t('Debits')}
+                        <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
+                      </NavLink>
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/withdraw-general-ac"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <BiCollection className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('WithdrawGeneralAC')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/withdraw-dps"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <MdAccountBalanceWallet className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('WithdrawDPS')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/dps-closing"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <RiCloseCircleFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('DPSClosing')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/fdr-profit-withdraw"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMoneyBillTrendUp className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('FDRProfitWithdraw')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/fdr-balance-withdraw"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaChartPie className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('FDRBalanceWithdraw')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/fdr-closing"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <RiCloseCircleFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('FDRClosing')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/bank-deposit"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <RiBankFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('BankDeposit')}
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
 
-              <NavLink
-                to="/income&cost"
-                onClick={handleSideMenu}
-                className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/income&cost' ? 'bg-graydark dark:bg-meta-4' : "")}`}
-              >
-                <GiTakeMyMoney className={`text-xl ${currentLanguage === 'bn' ? "-mt-[2px]" : "-mt-[4px]"}`} />
-                {t('income&cost')}
-              </NavLink>
-
-              <NavLink
-                to="/welfare"
-                onClick={handleSideMenu}
-                className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/welfare' ? 'bg-graydark dark:bg-meta-4' : "")}`}
-              >
-                <FaHandsHelping className={`text-xl ${currentLanguage === 'bn' ? "-mt-[2px]" : "-mt-[4px]"}`} />
-                {t('welfare')}
-              </NavLink>
+              <SidebarLinkGroup activeCondition={pathname === '/general-expense' || pathname === '/general-income' || pathname === '/deposit-from-director' || pathname === '//withdraw-for-director' || pathname === '/get-out-loan' || pathname === '/return-out-loan' || pathname === '/staff-salary-distribution' || pathname === '//staff-security-money-deposit' || pathname === '/staff-security-money-deposit' || pathname === '/staff-security-money-withdraw'}>
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/general-expense' || pathname === '/general-income' || pathname === '/deposit-from-director' || pathname === '//withdraw-for-director' || pathname === '/get-out-loan' || pathname === '/return-out-loan' || pathname === '/staff-salary-distribution' || pathname === '//staff-security-money-deposit' || pathname === '/staff-security-money-deposit' || pathname === '/staff-security-money-withdraw' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);}}>
+                        <FaChartLine className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
+                        {t('OtherTransactions')}
+                        <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
+                      </NavLink>
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">                      
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/general-expense"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <ImArrowUpLeft2 className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('GeneralExpense')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/general-income"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <ImArrowDownRight2 className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('GeneralIncome')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/deposit-from-director"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <ImArrowDownRight2 className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('DepositFromDirector')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/withdraw-for-director"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <ImArrowUpLeft2 className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('WithdrawForDirector')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/get-out-loan"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <ImArrowDownRight2 className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('GetOutLoan')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/return-out-loan"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <RiCloseCircleFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('ReturnOutLoan')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/staff-salary-distribution"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMoneyBills className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('StaffSalaryDistribution')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/staff-security-money-deposit"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <ImArrowDownRight2 className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('StaffSecurityMoneyDeposit')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/staff-security-money-withdraw"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <ImArrowUpLeft2 className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('StaffSecurityMoneyWithdraw')}
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
 
             </ul>
           </div>
@@ -736,8 +907,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <NavLink
                 to="#"
                 onClick={handleSideMenu}
-                className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '#' ? 'bg-graydark dark:bg-meta-4' : "")}`}
-              >
+                className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '#' ? 'bg-graydark dark:bg-meta-4' : "")}`}>
                 <MdLogout className={`text-xl rotate-180 ${currentLanguage === 'bn' ? "-mt-[3px]" : "-mt-[4px]"}`} />
                 {t('logOut')}
               </NavLink>

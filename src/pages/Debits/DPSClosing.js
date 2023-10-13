@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const DPSClosing = () => {
     return (
         <div>
-            DPS
+          DPSClosing  
         </div>
     );
 };
 
-export default DPS;
+export default DPSClosing;

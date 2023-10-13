@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const BranchList = () => {
     return (
         <div>
-            DPS
+            BranchList
         </div>
     );
 };
 
-export default DPS;
+export default BranchList;

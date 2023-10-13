@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DPS = () => {
+const BankDeposit = () => {
     return (
         <div>
-            DPS
+            BankDeposit
         </div>
     );
 };
 
-export default DPS;
+export default BankDeposit;

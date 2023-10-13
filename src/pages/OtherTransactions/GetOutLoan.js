@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Welfare = () => {
+const GetOutLoan = () => {
     return (
         <div>
-            Welfare
+            GetOutLoan
         </div>
     );
 };
 
-export default Welfare;
+export default GetOutLoan;

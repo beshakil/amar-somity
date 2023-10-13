@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AddBank = () => {
+const FDRClosing = () => {
     return (
         <div>
-            AddBank
+            FDRClosing
         </div>
     );
 };
 
-export default AddBank;
+export default FDRClosing;
