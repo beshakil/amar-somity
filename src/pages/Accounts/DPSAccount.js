@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DPS = () => {
+const DPSAccount = () => {
     return (
         <div>
             DPS
@@ -8,4 +8,4 @@ const DPS = () => {
     );
 };
 
-export default DPS;
+export default DPSAccount;

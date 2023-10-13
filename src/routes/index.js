@@ -21,7 +21,7 @@ const AddCustomer = lazy(() => import('../pages/Customer/AddCustomer'));
 const CustomerList = lazy(() => import('../pages/Customer/CustomerList'));
 
 const GeneralAccount = lazy(() => import('../pages/Accounts/GeneralAccount'));
-const DPS = lazy(() => import('../pages/Accounts/DPS'));
+const DPSAccount = lazy(() => import('../pages/Accounts/DPSAccount'));
 const Loan = lazy(() => import('../pages/Accounts/Loan'));
 const FDR = lazy(() => import('../pages/Accounts/FDR'));
 const Insurance = lazy(() => import('../pages/Accounts/Insurance'));
@@ -161,7 +161,7 @@ const coreRoutes = [
   {
     path: '/dps',
     title: 'DPS',
-    component: DPS,
+    component: DPSAccount,
   },
   {
     path: '/fdr',
