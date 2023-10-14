@@ -4,11 +4,11 @@ import CustomerDetailsData from '../components/Customer/CustomerDetailsData';
 const AddUser = lazy(() => import('../pages/User/AddUser'));
 const UserList = lazy(() => import('../pages/User/UserList'));
 
-const BranchList = lazy(() => import('../pages/PrimarySetup/BranchList'));
+const BranchSetup = lazy(() => import('../pages/PrimarySetup/BranchSetup'));
 const StaffList = lazy(() => import('../pages/PrimarySetup/StaffList'));
 const AreaList = lazy(() => import('../pages/PrimarySetup/AreaList'));
 const DirectorList = lazy(() => import('../pages/PrimarySetup/DirectorList'));
-const BankList = lazy(() => import('../pages/PrimarySetup/BankList'));
+const BankSetup = lazy(() => import('../pages/PrimarySetup/BankSetup'));
 const MobileBanking = lazy(() => import('../pages/PrimarySetup/MobileBanking'));
 const OutLoan = lazy(() => import('../pages/PrimarySetup/OutLoan'));
 const LoanCategory = lazy(() => import('../pages/PrimarySetup/LoanCategory'));
@@ -97,9 +97,9 @@ const coreRoutes = [
     component: UserList,
   },
   {
-    path: '/branch-list',
-    title: 'Branch List',
-    component: BranchList,
+    path: '/branch-setup',
+    title: 'Branch Setup',
+    component: BranchSetup,
   },
   {
     path: '/staff-list',
@@ -122,9 +122,9 @@ const coreRoutes = [
     component: OutLoan,
   },
   {
-    path: '/bank-list',
-    title: 'Bank List',
-    component: BankList,
+    path: '/bank-setup',
+    title: 'Bank Setup',
+    component: BankSetup,
   },
   {
     path: '/mobile-banking',

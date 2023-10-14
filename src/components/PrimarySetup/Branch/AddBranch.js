@@ -1,11 +1,11 @@
 import React from 'react';
 
-const BankList = () => {
+const AddBranch = () => {
     return (
         <div>
-            BankList
+            AddBranch
         </div>
     );
 };
 
-export default BankList;
+export default AddBranch;

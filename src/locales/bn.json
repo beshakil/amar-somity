@@ -48,7 +48,7 @@
     "fieldAssistant": "মাঠকর্মী",
     "manager": "ম্যানেজার",
     "depositor": "ডিপোজিটর ",
-    "submit": "জমাদিন",
+    "submit": "জমা দিন",
     "action": "পদক্ষেপ",
     "searchByMobileNumber": "মোবাইল নাম্বার দিয়ে খুঁজুন",
     "customerName":"নাম",
@@ -73,6 +73,7 @@
     "relation": "সম্পর্ক",
     "profile": "প্রোফাইল",
     "delete": "মুছুন",
+    "Edit": "এডিট",
     "daily": "দৈনিক",
     "weekly": "সপ্তাহিক",
     "monthly": "মাসিক",
@@ -156,7 +157,20 @@
     "SendSingleSMS": "একক SMS পাঠান",
     "SendSMSCustomers": "গ্রাহকদের SMS পাঠান",
     "SMSReport": "SMS রিপোর্ট",
-
+    
+    "BranchName": "শাখার নাম",
+    "BankName": "ব্যাংকের নাম",
+    "AccountNo": "অ্যাকাউন্ট নং",
+    "Balance": "ব্যালান্স",
+    "NewBankAdd": "নতুন ব্যাংক যোগ",
+    "BankNameWithBranchName": "ব্যাংক শাখার নাম সহ ব্যাংক নাম",
+    "AddedSuccessfully'": "সফলভাবে অ্যাড হয়েছে",
+    "BankEdit": "ব্যাংক এডিট",
+    "BankDelete": "ব্যাংক ডিলিট",
+    "EditSubmit": "এডিট জমা দিন",
+    "yes": "হ্যাঁ",
+    "no": "না",
+    "DeleteThisBank": "আপনি কি এই ব্যাংক মুছে দিতে চান?",
 
     "dashboard": "ড্যাশবোর্ড"
   }
