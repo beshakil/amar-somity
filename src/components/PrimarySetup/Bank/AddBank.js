@@ -9,22 +9,6 @@ const AddBank = ({ handleAddBank, formValues, setFormValues, addBankPopupOpen, a
     const currentLanguage = i18n.language;
     const banglaFontClass = currentLanguage === 'bn' ? 'font-bangla' : 'font-satoshi';
 
-
-    // const SuccessNotify = () => toast.success(
-    //     <p className={`${banglaFontClass} text-xl`}>
-    //         {currentLanguage === 'bn' ? 'সফলভাবে অ্যাড হয়েছে' : 'Added successfully'}
-    //     </p>, {
-    //     duration: 4000,
-    //     position: 'top-center',
-    // }
-    // );
-
-    // const handleFormSubmit = (e) => {
-    //     e.preventDefault();
-    //     SuccessNotify()
-    //     setAddBankPopup(false)
-    // };
-
     return (
         <>
             <div className='pb-6 pt-3 md:pt-0'>

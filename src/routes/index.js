@@ -7,6 +7,7 @@ const UserList = lazy(() => import('../pages/User/UserList'));
 const BranchSetup = lazy(() => import('../pages/PrimarySetup/BranchSetup'));
 const StaffList = lazy(() => import('../pages/PrimarySetup/StaffList'));
 const AreaList = lazy(() => import('../pages/PrimarySetup/AreaList'));
+const SomityAndGroupSetup = lazy(() => import('../pages/PrimarySetup/SomityAndGroupSetup'));
 const DirectorList = lazy(() => import('../pages/PrimarySetup/DirectorList'));
 const BankSetup = lazy(() => import('../pages/PrimarySetup/BankSetup'));
 const MobileBanking = lazy(() => import('../pages/PrimarySetup/MobileBanking'));
@@ -110,6 +111,11 @@ const coreRoutes = [
     path: '/area-list',
     title: 'Area List',
     component: AreaList,
+  },
+  {
+    path: '/somity-or-group-setup',
+    title: 'Somity/Group Setup',
+    component: SomityAndGroupSetup,
   },
   {
     path: '/director-list',

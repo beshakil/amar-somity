@@ -17,6 +17,7 @@ import { HiOutlineDocumentReport } from "react-icons/hi";
 import { PiPackageFill, PiUserCircleGearFill, PiPercentFill} from "react-icons/pi";
 import { VscSettings, VscCloseAll } from "react-icons/vsc";
 import { GoGitBranch } from "react-icons/go";
+import { GiCherish } from "react-icons/gi";
 import { ImArrowUpLeft2, ImArrowDownRight2 } from "react-icons/im";
 import { AiFillCalculator } from "react-icons/ai";
 import { RiBankFill, RiCloseCircleFill } from "react-icons/ri";
@@ -202,6 +203,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
+                              to="/somity-or-group-setup"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <GiCherish className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('SomityAndGroupList')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
                               to="/staff-list"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
@@ -211,6 +223,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               {t('StaffList')}
                             </NavLink>
                           </li>
+                          
                           <li className={`${banglaFontClass}`}>
                             <NavLink
                               to="/area-list"
