@@ -131,6 +131,33 @@
     "StaffSecurityMoneyDeposit": "স্টাফ সিকিউরিটি জমা",
     "StaffSecurityMoneyWithdraw": "স্টাফ নিরাপত্তা উত্তোলন",
 
+    "AllReports": "সমস্ত রিপোর্ট",
+    "AdmissionRegister": "ভর্তি রেজিস্টার",
+    "CustomerBalance": "গ্রাহক ব্যালেন্স",
+    "GeneralLedger": "জেনারেল লেজার",
+    "AccountStatement": "অ্যাকাউন্ট স্টেটমেন্ট",
+    "BankStatement": "ব্যাংক স্টেটমেন্ট",
+    "UserEntrySummary": "স্টাফ এন্ট্রি সারাংশ",
+    "UserWiseEntrySummary": "স্টাফ ওয়াইজ এন্ট্রি",
+    "ReceiveAndPaymentReport": "গ্রহণ এবং পেমেন্ট প্রতিবেদন",
+    "ProfitAndLossReport": "লাভ ও ক্ষতি প্রতিবেদন",
+    "LoanOpeningClosingReport": "ঋণ খোলা/বন্ধ প্রতিবেদন",
+    "VoucherReport": "ভাউচার প্রতিবেদন",
+    "MonthlySavingsReport": "DPS প্রতিবেদন",
+    "FixedDepositReport": "FDS প্রতিবেদন",
+    "MonthlyTopSheet": "মাসিক শীর্ষ শীট",
+    "MonthWiseTopSheet": "মাস ওয়াইজ টপ শিট",
+    "SheetDownload": "শীট ডাউনলোড",
+    "CollectionSheet": "আদায় শীট",
+    "DailyCollectionSheet": "দৈনিক আদায় শীট",
+
+    "MobileSMS": "মোবাইল SMS",
+    "SendBulkSMS": "গ্রুপ SMS পাঠান",
+    "SendSingleSMS": "একক SMS পাঠান",
+    "SendSMSCustomers": "গ্রাহকদের SMS পাঠান",
+    "SMSReport": "SMS রিপোর্ট",
+
+
     "dashboard": "ড্যাশবোর্ড"
   }
  

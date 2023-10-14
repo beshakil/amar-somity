@@ -52,6 +52,29 @@ const StaffSalaryDistribution = lazy(() => import('../pages/OtherTransactions/St
 const StaffSecurityMoneyDeposit = lazy(() => import('../pages/OtherTransactions/StaffSecurityMoneyDeposit'));
 const StaffSecurityMoneyWithdraw = lazy(() => import('../pages/OtherTransactions/StaffSecurityMoneyWithdraw'));
 
+const AdmissionRegister = lazy(() => import('../pages/AllReports/AdmissionRegister'));
+const CustomerBalance = lazy(() => import('../pages/AllReports/CustomerBalance'));
+const GeneralLedger = lazy(() => import('../pages/AllReports/GeneralLedger'));
+const AccountStatement = lazy(() => import('../pages/AllReports/AccountStatement'));
+const BankStatement = lazy(() => import('../pages/AllReports/BankStatement'));
+const UserEntrySummary = lazy(() => import('../pages/AllReports/UserEntrySummary'));
+const UserWiseEntrySummary = lazy(() => import('../pages/AllReports/UserWiseEntrySummary'));
+const ProfitAndLossReport = lazy(() => import('../pages/AllReports/ProfitAndLossReport'));
+const LoanOpeningClosingReport = lazy(() => import('../pages/AllReports/LoanOpeningClosingReport'));
+const VoucherReport = lazy(() => import('../pages/AllReports/VoucherReport'));
+const MonthlySavingsReport = lazy(() => import('../pages/AllReports/MonthlySavingsReport'));
+const FixedDepositReport = lazy(() => import('../pages/AllReports/FixedDepositReport'));
+const MonthlyTopSheet = lazy(() => import('../pages/AllReports/MonthlyTopSheet'));
+const MonthWiseTopSheet = lazy(() => import('../pages/AllReports/MonthWiseTopSheet'));
+
+const CollectionSheet = lazy(() => import('../pages/SheetDownload/CollectionSheet'));
+const DailyCollectionSheet = lazy(() => import('../pages/SheetDownload/DailyCollectionSheet'));
+
+const SendBulkSMS = lazy(() => import('../pages/MobileSMS/SendBulkSMS'));
+const SendSingleSMS = lazy(() => import('../pages/MobileSMS/SendSingleSMS'));
+const SendSMSCustomers = lazy(() => import('../pages/MobileSMS/SendSMSCustomers'));
+const SMSReport = lazy(() => import('../pages/MobileSMS/SMSReport'));
+
 const RenewPackage = lazy(() => import('../pages/PackageSettings/RenewPackage'));
 const SMSPackage = lazy(() => import('../pages/PackageSettings/SMSPackage'));
 
@@ -284,9 +307,109 @@ const coreRoutes = [
     component: StaffSecurityMoneyDeposit,
   },
   {
-    path: '//staff-security-money-withdraw',
+    path: '/staff-security-money-withdraw',
     title: 'Staff Security Money Withdraw',
     component: StaffSecurityMoneyWithdraw,
+  },
+  {
+    path: '/admission-register',
+    title: 'Admission Register',
+    component: AdmissionRegister,
+  },
+  {
+    path: '/customer-balance',
+    title: 'Customer Balance',
+    component: CustomerBalance,
+  },
+  {
+    path: '/general-ledger',
+    title: 'General Ledger',
+    component: GeneralLedger,
+  },
+  {
+    path: '/account-statement',
+    title: 'Account Statement',
+    component: AccountStatement,
+  },
+  {
+    path: '/bank-statement',
+    title: 'Bank Statement',
+    component: BankStatement,
+  },
+  {
+    path: '/user-entry-summary',
+    title: 'User Entry Summary',
+    component: UserEntrySummary,
+  },
+  {
+    path: '/user-wise-entry-summary',
+    title: 'User Wise Entry Summary',
+    component: UserWiseEntrySummary,
+  },
+  {
+    path: '/profit-and-loss-report',
+    title: 'ProfitAndLossReport',
+    component: ProfitAndLossReport,
+  },
+  {
+    path: '/loan-opening-closing-report',
+    title: 'LoanOpeningClosingReport',
+    component: LoanOpeningClosingReport,
+  },
+  {
+    path: '/voucher-report',
+    title: 'VoucherReport',
+    component: VoucherReport,
+  },
+  {
+    path: '/monthly-savings-report',
+    title: 'Monthly Savings Report',
+    component: MonthlySavingsReport,
+  },
+  {
+    path: '/fixed-deposit-report',
+    title: 'Fixed Deposit Report',
+    component: FixedDepositReport,
+  },
+  {
+    path: '/monthly-top-sheet',
+    title: 'Fixed Deposit Report',
+    component: MonthlyTopSheet,
+  },
+  {
+    path: '/month-wise-top-sheet',
+    title: 'Month Wise Top Sheet',
+    component: MonthWiseTopSheet,
+  },
+  {
+    path: '/collection-sheet',
+    title: 'Collection Sheet',
+    component: CollectionSheet,
+  },
+  {
+    path: '/daily-collection-sheet',
+    title: 'DailyCollection Sheet',
+    component: DailyCollectionSheet,
+  },
+  {
+    path: '/send-bulk-sms',
+    title: 'SendBulk SMS',
+    component: SendBulkSMS,
+  },
+  {
+    path: '/send-single-sms',
+    title: 'Send Single SMS',
+    component: SendSingleSMS,
+  },
+  {
+    path: '/send-sms-customers',
+    title: 'Send SMS Customers',
+    component: SendSMSCustomers,
+  },
+  {
+    path: '/sms-report',
+    title: 'SMS Report',
+    component: SMSReport,
   },
   {
     path: '/renewpackage',

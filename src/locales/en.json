@@ -120,6 +120,33 @@
     "StaffSecurityMoneyDeposit": "Staff Security Money Deposit",
     "StaffSecurityMoneyWithdraw": "Staff Security Money Withdraw",
 
+    "AllReports": "All Reports",
+    "AdmissionRegister": "Admission Register",
+    "CustomerBalance": "Customer Balance",
+    "GeneralLedger": "General Ledger",
+    "AccountStatement": "Account Statement",
+    "BankStatement": "Bank Statement",
+    "UserEntrySummary": "Staff Entry Summary",
+    "UserWiseEntrySummary": "Staff Wise Entry Summary",
+    "ReceiveAndPaymentReport": "Receive & Payment Report",
+    "ProfitAndLossReport": "Profit & Loss Report",
+    "LoanOpeningClosingReport": "Loan Opening Closing Report",
+    "VoucherReport": "Voucher Report",
+    "MonthlySavingsReport": "Monthly Savings Report",
+    "FixedDepositReport": "Fixed Deposit Report",
+    "MonthlyTopSheet": "Monthly Top Sheet",
+    "MonthWiseTopSheet": "Month Wise Top Sheet",
+
+    "SheetDownload": "Sheet Download",
+    "CollectionSheet": "Collection Sheet",
+    "DailyCollectionSheet": "Daily Collection Sheet",
+
+    "MobileSMS": "Mobile SMS",
+    "SendBulkSMS": "Send Bulk SMS",
+    "SendSingleSMS": "Send Single SMS",
+    "SendSMSCustomers": "Send SMS Customers",
+    "SMSReport": "SMS Report",
+
     "dashboard": "Dashboard"
   }
   

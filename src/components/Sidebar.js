@@ -4,17 +4,17 @@ import Logo from '../assets/images/logo/logo.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
 import { RxDashboard } from "react-icons/rx";
 import { useTranslation } from 'react-i18next';
-import { FaUserShield, FaChartPie, FaSpa, FaUsers, FaUserPlus, FaHandsHelping, FaChartLine, FaSms, FaKey, FaRegChartBar, FaRegWindowClose, FaUserFriends, FaMobileAlt } from "react-icons/fa";
-import { FaMoneyBillTrendUp, FaMoneyBills, FaMapLocationDot, FaMoneyBillWheat } from "react-icons/fa6";
-import { BsListOl, BsListUl, BsCreditCardFill, BsPersonFillGear } from "react-icons/bs";
-import { MdKeyboardArrowDown, MdOutlineSavings, MdSettings, MdAccountBalanceWallet, MdAccountBalance, MdOutlineAddCircle, MdAutorenew, MdLogout } from "react-icons/md";
+import { FaUserShield, FaChartPie, FaUser, FaSpa, FaUsers, FaUserPlus, FaHandsHelping, FaChartLine, FaSms, FaKey, FaRegChartBar, FaDownload, FaUserFriends, FaMobileAlt } from "react-icons/fa";
+import { FaMoneyBillTrendUp, FaMoneyBills, FaMapLocationDot, FaMoneyBillWheat, FaUserTag, FaSheetPlastic, FaEnvelopesBulk } from "react-icons/fa6";
+import { BsCalendar2MonthFill, BsListUl, BsFileEarmarkSpreadsheetFill, BsPersonFillGear } from "react-icons/bs";
+import { MdKeyboardArrowDown, MdGroups, MdSettings, MdAccountBalanceWallet, MdCalendarMonth, MdOutlineAddCircle, MdAutorenew, MdLogout } from "react-icons/md";
 import { IoArrowRedo, IoArrowUndo } from "react-icons/io5";
 import { BiCollection } from "react-icons/bi";
 import { ImCalculator } from "react-icons/im";
 import { PiUserListFill } from "react-icons/pi";
-import { TbSquareRoundedNumber0Filled, TbCategory, TbFileInvoice } from "react-icons/tb";
-import { GiTakeMyMoney } from "react-icons/gi";
-import { PiPackageFill, PiUserCircleGearFill } from "react-icons/pi";
+import { TbReport, TbCategory, TbFileInvoice, TbReportAnalytics } from "react-icons/tb";
+import { HiOutlineDocumentReport } from "react-icons/hi";
+import { PiPackageFill, PiUserCircleGearFill, PiPercentFill} from "react-icons/pi";
 import { VscSettings, VscCloseAll } from "react-icons/vsc";
 import { GoGitBranch } from "react-icons/go";
 import { ImArrowUpLeft2, ImArrowDownRight2 } from "react-icons/im";
@@ -761,6 +761,231 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 }}
               </SidebarLinkGroup>
 
+              <SidebarLinkGroup activeCondition={pathname === '/admission-register' || pathname === '/customer-balance' || pathname === '/general-ledger' || pathname === '/account-statement' || pathname === '/bank-statement' || pathname === '/user-entry-summary' || pathname === '/user-wise-entry-summary' || pathname === '/profit-and-loss-report' || pathname === '/loan-opening-closing-report' || pathname === '/voucher-report' || pathname === '/monthly-savings-report' || pathname === '/fixed-deposit-report' || pathname === '/monthly-top-sheet' || pathname === '/month-wise-top-sheet'}>
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/admission-register' || pathname === '/customer-balance' || pathname === '/general-ledger' || pathname === '/account-statement' || pathname === '/bank-statement' || pathname === '/user-entry-summary' || pathname === '/user-wise-entry-summary' || pathname === '/profit-and-loss-report' || pathname === '/loan-opening-closing-report' || pathname === '/voucher-report' || pathname === '/monthly-savings-report' || pathname === '/fixed-deposit-report' || pathname === '/monthly-top-sheet' || pathname === '/month-wise-top-sheet' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);}}>
+                        <TbReport className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
+                        {t('AllReports')}
+                        <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
+                      </NavLink>
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">                      
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/admission-register"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <PiUserListFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('AdmissionRegister')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/customer-balance"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUsers className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('CustomerBalance')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/general-ledger"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <HiOutlineDocumentReport className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('GeneralLedger')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/account-statement"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <MdAccountBalanceWallet className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('AccountStatement')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/bank-statement"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <RiBankFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('BankStatement')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/user-entry-summary"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUserFriends className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('UserEntrySummary')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/user-wise-entry-summary"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUserTag className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('UserWiseEntrySummary')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/profit-and-loss-report"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <PiPercentFill className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('ProfitAndLossReport')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/loan-opening-closing-report"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <AiFillCalculator className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('LoanOpeningClosingReport')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/voucher-report"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <TbFileInvoice className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('VoucherReport')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/monthly-savings-report"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaMoneyBillTrendUp className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('MonthlySavingsReport')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/fixed-deposit-report"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaChartPie className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('FixedDepositReport')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/monthly-top-sheet"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <MdCalendarMonth className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('MonthlyTopSheet')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/month-wise-top-sheet"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <BsCalendar2MonthFill className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('MonthWiseTopSheet')}
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
+
+              <SidebarLinkGroup activeCondition={ pathname === '/collection-sheet' || pathname === '/daily-collection-sheet'}>
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/collection-sheet' || pathname === '/daily-collection-sheet' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);}}>
+                        <FaDownload className={`text-base ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
+                        {t('SheetDownload')}
+                        <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
+                      </NavLink>
+                      <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/collection-sheet"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaSheetPlastic className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('CollectionSheet')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/daily-collection-sheet"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <BsFileEarmarkSpreadsheetFill className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('DailyCollectionSheet')}
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
             </ul>
           </div>
 
@@ -770,6 +995,79 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {t('settings')}
             </h3>
             <ul className="mb-6 flex flex-col gap-1.5">
+              <SidebarLinkGroup
+                activeCondition={pathname === '/send-bulk-sms' || pathname === '/send-single-sms' || pathname === '/send-sms-customers' || pathname === '/sms-report'}>
+
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/send-bulk-sms' || pathname === '/send-single-sms' || pathname === '/send-sms-customers' || pathname === '/sms-report' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);}}>
+                        <FaSms className={`text-lg ${currentLanguage === 'bn' ? "-mt-[3px]" : "-mt-[4px]"}`} />
+                        {t('MobileSMS')}
+                        <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
+                      </NavLink>
+
+                      <div
+                        className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/send-bulk-sms"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaEnvelopesBulk className={`text-xl -ml-1 ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('SendBulkSMS')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/send-single-sms"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUser className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('SendSingleSMS')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/send-sms-customers"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUsers className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('SendSMSCustomers')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
+                              to="/sms-report"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <TbReportAnalytics className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
+                              {t('SMSReport')}
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                      {/* <!-- Dropdown Menu End --> */}
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
               <SidebarLinkGroup
                 activeCondition={pathname === '/renewpackage' || pathname === '/sms-package'}>
 
