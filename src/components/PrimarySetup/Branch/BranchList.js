@@ -1,96 +1,75 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
-import { BsSearch, BsEye, BsShieldLock } from "react-icons/bs";
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
-import { RiFileExcel2Fill } from "react-icons/ri";
-import OutsideClickHandler from 'react-outside-click-handler';
 
-const BranchList = () => {
+const BranchList = ({ branch, handleDeleteBranch, handleEdit }) => {
+
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
     const banglaFontClass = currentLanguage === 'bn' ? 'font-bangla' : 'font-satoshi';
 
-    const [moreInfo, setMoreInfo] = useState(null)
-
-    const handleMoreInfo = (id) => {
-        setMoreInfo(id === moreInfo ? null : id);
-    }
     return (
-        <div className="rounded-sm border border-stroke bg-white p-3 md:p-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="max-w-full overflow-x-auto">
                 <table className="w-full table-auto">
                     <thead>
                         <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                            <th className={`min-w-[50px] md:min-w-[100px] ${banglaFontClass} py-3 px-4 font-bold text-lg text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
-                            </th>
-                            <th className={`min-w-[220px] ${banglaFontClass} py-3 px-4 font-bold text-lg text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
+                            <th className={`min-w-[20px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}></th>
+                            <th className={`min-w-[160px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
                                 {t('BranchName')}
                             </th>
-                            <th className={`min-w-[150px] ${banglaFontClass} py-3 px-4 font-bold text-lg text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
-                                {t('BankName')}
+                            <th className={`min-w-[100px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
+                                {t('BranchShortName')}
                             </th>
-                            <th className={`min-w-[150px] ${banglaFontClass} py-3 px-4 font-bold text-lg text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
-                                {t('AccountNo')}
+                            <th className={`min-w-[130px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
+                                {t('mobile')}
                             </th>
-                            <th className={`min-w-[150px] ${banglaFontClass} py-3 px-4 font-bold text-lg text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
-                                {t('Balance')}
+                            <th className={`min-w-[160px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
+                                {t('email')}
+                            </th>
+                            <th className={`min-w-[130px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
+                                {t('telePhone')}
+                            </th>
+                            <th className={`min-w-[160px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
+                                {t('address')}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="border border-[#eee] py-2 px-4 dark:border-strokedark">
-                                <div className="flex items-center justify-center gap-2">
-                                    <button className="flex gap-1 items-center px-1 md:px-2 py-1 bg-primary text-white rounded-md mr-1 md:mr-2 text-base">
-                                        <BiSolidEdit className='text-lg' /> <span className={`md:block hidden ${banglaFontClass}`}>{t('Edit')}</span>
-                                    </button>
-                                    <button className="flex gap-1 items-center px-1 md:px-2 py-1 bg-danger text-white rounded-md text-base">
-                                        <BiTrash className='text-lg' /> <span className={`md:block hidden ${banglaFontClass}`}>{t('delete')}</span>
-                                    </button>
-                                </div>
-                            </td>
-                            <td className="border border-[#eee] py-2 px-4 dark:border-strokedark">
-                                <h5 className="text-center font-normal dark:text-white">
-                                    Islami Bank
-                                </h5>
-                            </td>
-                            <td className="border text-center border-[#eee] py-2 px-4 dark:border-strokedark">
-                                <p className=" dark:text-white">Jan 13,2023</p>
-                            </td>
-                            <td className="border text-center border-[#eee] py-2 px-4 dark:border-strokedark">
-                                100121446565
-                            </td>
-                            <td className="border text-center border-[#eee] py-2 px-4 dark:border-strokedark">
-                                1000 TK
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="border border-[#eee] py-2 px-4 dark:border-strokedark">
-                                <div className="flex items-center justify-center gap-2">
-                                    <button className="flex gap-1 items-center px-1 md:px-2 py-1 bg-primary text-white rounded-md mr-1 md:mr-2 text-base">
-                                        <BiSolidEdit className='text-lg' /> <span className={`md:block hidden ${banglaFontClass}`}>{t('Edit')}</span>
-                                    </button>
-                                    <button className="flex gap-1 items-center px-1 md:px-2 py-1 bg-danger text-white rounded-md text-base">
-                                        <BiTrash className='text-lg' /> <span className={`md:block hidden ${banglaFontClass}`}>{t('delete')}</span>
-                                    </button>
-                                </div>
-                            </td>
-                            <td className="border border-[#eee] py-2 px-4 dark:border-strokedark">
-                                <h5 className="text-center font-normal dark:text-white">
-                                    Islami Bank
-                                </h5>
-                            </td>
-                            <td className="border text-center border-[#eee] py-2 px-4 dark:border-strokedark">
-                                <p className=" dark:text-white">Jan 13,2023</p>
-                            </td>
-                            <td className="border text-center border-[#eee] py-2 px-4 dark:border-strokedark">
-                                100121446565
-                            </td>
-                            <td className="border text-center border-[#eee] py-2 px-4 dark:border-strokedark">
-                                1000 TK
-                            </td>
-                        </tr>
+                        {branch.map((items) => (
+                            <tr key={items.id}>
+                                <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <button onClick={() => handleEdit(items)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
+                                            <BiSolidEdit className='text-base' />
+                                        </button>
+                                        <button onClick={() => handleDeleteBranch(items.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
+                                            <BiTrash className='text-base' />
+                                        </button>
+                                    </div>
+                                </td>
+                                <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                    <h5 className="text-center font-normal dark:text-white">
+                                        {items.branchName}
+                                    </h5>
+                                </td>
+                                <td className="border text-center border-[#eee] py-2 px-2 dark:border-strokedark">
+                                    <p className=" dark:text-white">{items.branchShortName}</p>
+                                </td>
+                                <td className="border text-center border-[#eee] py-2 px-2 dark:border-strokedark">
+                                    <p className=" dark:text-white">{items.mobile}</p>
+                                </td>
+                                <td className="border text-center border-[#eee] py-2 px-2 dark:border-strokedark">
+                                    {items.email}
+                                </td>
+                                <td className="border text-center border-[#eee] py-2 px-2 dark:border-strokedark">
+                                    {items.telePhone}
+                                </td>
+                                <td className="border text-center border-[#eee] py-2 px-2 dark:border-strokedark">
+                                    {items.address}
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

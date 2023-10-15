@@ -1,18 +1,14 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
-import { Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { Route, Routes } from "react-router-dom";
 
-import ECommerce from './pages/Dashboard/ECommerce';
-import SignIn from './pages/Authentication/SignIn';
-import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
-import routes from './routes';
-import Profile from './pages/Profile';
 import DashboardElements from './components/DashboardElements';
 import NotFound from './components/NotFound';
+import SignIn from './pages/Authentication/SignIn';
+import SignUp from './pages/Authentication/SignUp';
 import DashBoardHome from './pages/DashBoardHome';
-import CustomerDetailsData from './components/Customer/CustomerDetailsData';
-import CustomerList from './pages/Customer/CustomerList';
+import routes from './routes';
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 

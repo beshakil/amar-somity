@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdAddCircle, MdClose } from "react-icons/md";
 import OutsideClickHandler from 'react-outside-click-handler';
-import toast, { Toaster } from 'react-hot-toast';
 
 const AddBank = ({ handleAddBank, formValues, setFormValues, addBankPopupOpen, addBankPopup, addBankPopupClose, handleEditBank }) => {
     const { t, i18n } = useTranslation();
@@ -26,7 +25,7 @@ const AddBank = ({ handleAddBank, formValues, setFormValues, addBankPopupOpen, a
                 addBankPopup === true ?
                     <div className='backWrapData' >
                         <OutsideClickHandler onOutsideClick={addBankPopupClose}>
-                            <div className='w-[320px] md:w-[600px] bg-white dark:bg-graydark p-5 rounded-md'>
+                            <div className='w-[320px] md:w-[600px] bg-white dark:bg-graydark p-5 rounded-md animate__animated animate__zoomIn animate__faster'>
                                 <div className='flex justify-between items-center border-b border-stroke pb-2'>
                                     <div>
                                         {formValues.id ?

@@ -1,14 +1,15 @@
+import 'animate.css';
+import i18n from 'i18next';
+import Cookies from 'js-cookie';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from "react-router-dom";
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Cookies from 'js-cookie'
-import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import enTranslation from './locales/en.json';
+import { BrowserRouter } from "react-router-dom";
+import App from './App';
+import './index.css';
 import bnTranslation from './locales/bn.json';
+import enTranslation from './locales/en.json';
+import reportWebVitals from './reportWebVitals';
 
 const savedLanguage = Cookies.get('language');
 
