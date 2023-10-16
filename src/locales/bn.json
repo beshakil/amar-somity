@@ -40,6 +40,7 @@
   "fullName": "সম্পূর্ণ নাম লিখুন",
   "fullNameTable": "সম্পূর্ণ নাম",
   "mobile": "মোবাইল",
+  "mobileNumber": "মোবাইল নাম্বার",
   "telePhone": "টেলিফোন",
   "email": "ই-মেইল",
   "password": "পাসওয়ার্ড",
@@ -162,6 +163,7 @@
   "BankEdit": "ব্যাংক এডিট",
   "BankDelete": "ব্যাংক ডিলিট",
   "BranchEdit": "শাখা এডিট",
+  "NumberEdit": "নাম্বার এডিট",
   "BranchDelete": "শাখা ডিলিট",
   "EditSubmit": "এডিট জমা দিন",
   "yes": "হ্যাঁ",
@@ -172,5 +174,12 @@
   "BranchName": "শাখার নাম",
   "BranchShortName": "সংক্ষিপ্ত নাম",
   "BranchList": "শাখার তালিকা",
+  "NewMobileAdd": "নতুন নাম্বার যোগ",
+  "PaymentOptions": "পেমেন্ট নির্বাচন",
+  "PaymentSelect": "পেমেন্ট নির্বাচন করুন",
+  "PaymentMethod": "পেমেন্ট পদ্ধতি",
+  "Bkash": "বিকাশ",
+  "Nagad": "নগদ",
+  "list": "তালিকা",
   "dashboard": "ড্যাশবোর্ড"
 }

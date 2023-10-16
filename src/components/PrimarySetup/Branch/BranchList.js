@@ -15,7 +15,6 @@ const BranchList = ({ branch, handleDeleteBranch, handleEdit }) => {
                     <thead>
                         <tr className="bg-gray-2 text-left dark:bg-meta-4">
                             <th className={`min-w-[20px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}></th>
-
                             <th className={`min-w-[160px] ${banglaFontClass} py-3 px-2 font-bold text-base text-center dark:text-white border border-[#eee] dark:border-form-strokedark`}>
                                 {t('BranchName')}
                             </th>

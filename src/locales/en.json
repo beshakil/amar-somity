@@ -40,6 +40,7 @@
   "fullName": "Full Name",
   "fullNameTable": "Full Name",
   "mobile": "Mobile",
+  "mobileNumber": "Mobile Number",
   "telePhone": "Tele Phone",
   "email": "E-mail",
   "password": "Password",
@@ -154,6 +155,7 @@
   "BankDelete": "Bank Delete",
   "BranchEdit": "Branch Edit",
   "BranchDelete": "Branch Delete",
+  "NumberEdit": "Number Edit",
   "EditSubmit": "Edit Submit",
   "yes": "Yes",
   "no": "No",
@@ -163,5 +165,11 @@
   "BranchName": "Branch Name",
   "BranchShortName": "Short Name",
   "BranchList": "Branch List",
+  "PaymentOptions": "Payment Options",
+  "PaymentSelect": "Payment Select",
+  "PaymentMethod": "Payment Method",
+  "Bkash": "Bkash",
+  "Nagad": "Nagad",
+  "list": "List",
   "dashboard": "Dashboard"
 }

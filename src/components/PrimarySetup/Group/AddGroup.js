@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { MdAddCircle, MdClose } from "react-icons/md";
 import OutsideClickHandler from 'react-outside-click-handler';
 
-const AddMobile = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup, addPopupClose, itemToEdit, handleSubmitEdit, selectedValue, handleSelectChange }) => {
+const AddGroup = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup, addPopupClose, itemToEdit, handleSubmitEdit }) => {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
     const banglaFontClass = currentLanguage === 'bn' ? 'font-bangla' : 'font-satoshi';
@@ -13,11 +13,11 @@ const AddMobile = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopu
             <div className='pb-6 pt-3 md:pt-0'>
                 <div className='flex justify-between items-center'>
                     <button className={`${banglaFontClass} text-2xl md:text-[28px] font-bold`}>
-                        {t('mobileNumber')} {t('list')}
+                        {t('BranchList')}
                     </button>
                     <button onClick={addPopupOpen} className='flex gap-2 py-1 md:py-2 px-3 md:px-4 bg-primary text-white items-center'>
                         <MdAddCircle className='text-xl' />
-                        <p className={`${banglaFontClass} text-lg`}>{t('NewMobileAdd')}</p>
+                        <p className={`${banglaFontClass} text-lg`}>{t('NewBranchAdd')}</p>
                     </button>
                 </div>
             </div>
@@ -28,10 +28,13 @@ const AddMobile = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopu
                             <div className='w-[320px] md:w-[600px] bg-white dark:bg-graydark p-5 rounded-md animate__animated animate__zoomIn animate__faster'>
                                 <div className='flex justify-between items-center border-b border-stroke pb-2'>
                                     <div>
+
+                                        {/* <p className={`${banglaFontClass} font-bold text-xl`} >{t('NewBranchAdd')} </p> */}
+
                                         {itemToEdit ? (
-                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('NumberEdit')}</p>
+                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('BranchEdit')}</p>
                                         ) : (
-                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('NewMobileAdd')}</p>
+                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('NewBranchAdd')}</p>
                                         )}
                                     </div>
                                     <div>
@@ -43,7 +46,7 @@ const AddMobile = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopu
                                 <div>
                                     <div className='flex flex-col md:flex-row gap-2 md:gap-6 justify-between py-2 pt-5'>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('mobileNumber')}</label>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('BranchName')}</label>
                                             <input
                                                 required
                                                 type="text"
@@ -53,17 +56,16 @@ const AddMobile = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopu
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
-
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('PaymentOptions')}</label>
-                                            <select
-                                                value={selectedValue}
-                                                onChange={handleSelectChange}
-                                                className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${banglaFontClass}`}>
-                                                <option value="" className={`${banglaFontClass}`}>{t('PaymentSelect')}</option>
-                                                <option value="Bkash" className={`${banglaFontClass}`}>{t('Bkash')}</option>
-                                                <option value="Nagad" className={`${banglaFontClass}`}>{t('Nagad')}</option>
-                                            </select>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('BranchShortName')}</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="paymentOption"
+                                                value={formValues.paymentOption}
+                                                onChange={(e) => setFormValues({ ...formValues, paymentOption: e.target.value })}
+                                                className='w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                                            />
                                         </div>
                                     </div>
                                     <div className='flex justify-end'>
@@ -87,4 +89,4 @@ const AddMobile = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopu
     );
 };
 
-export default AddMobile;
+export default AddGroup;

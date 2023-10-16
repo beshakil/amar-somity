@@ -6,10 +6,9 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
-import { BsSearch } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 import OutsideClickHandler from 'react-outside-click-handler';
-import AddMobile from "./AddMobile";
+import AddGroup from "./AddGroup";
 
 const nodes = [
     {
@@ -255,7 +254,7 @@ const nodes = [
 ]
 
 
-const MobileList = () => {
+const GroupList = () => {
 
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
@@ -270,17 +269,6 @@ const MobileList = () => {
     const [deletePopup, setDeletePopup] = React.useState(false);
     const [itemToDelete, setItemToDelete] = React.useState(null);
     const [itemToEdit, setItemToEdit] = React.useState(null);
-    const [selectedValue, setSelectedValue] = React.useState('');
-
-    const generateId = () => {
-        return new Date().getTime().toString();
-    };
-
-    const [formValues, setFormValues] = React.useState({
-        id: generateId(),
-        mobile: '',
-        paymentOption: selectedValue,
-    });
 
     const SuccessNotify = () => toast.success(
         <p className={`${banglaFontClass} text-xl`}>
@@ -291,10 +279,6 @@ const MobileList = () => {
     }
     );
 
-    React.useEffect(() => {
-        setData({ nodes });
-    }, []);
-
 
     // Generate a unique ID with create data based on the current timestamp
 
@@ -302,15 +286,15 @@ const MobileList = () => {
         setAddPopup(true)
     }
 
-    const handleSelectChange = (event) => {
-        const { value } = event.target;
-        setSelectedValue(value);
-        setFormValues({
-            ...formValues,
-            paymentOption: value,
-        });
+    const generateId = () => {
+        return new Date().getTime().toString();
     };
 
+    const [formValues, setFormValues] = React.useState({
+        id: generateId(),
+        mobile: '',
+        paymentOption: '',
+    });
 
     const handleAdd = () => {
         if (formValues.mobile && formValues.paymentOption) {
@@ -412,65 +396,10 @@ const MobileList = () => {
         console.log(action, state);
     }
 
-    // CVC Download
-
-    const escapeCsvCell = (cell) => {
-        if (cell == null) {
-            return "";
-        }
-        const sc = cell.toString().trim();
-        if (sc === "" || sc === '""') {
-            return sc;
-        }
-        if (
-            sc.includes('"') ||
-            sc.includes(",") ||
-            sc.includes("\n") ||
-            sc.includes("\r")
-        ) {
-            return '"' + sc.replace(/"/g, '""') + '"';
-        }
-        return sc;
-    };
-
-    const makeCsvData = (columns, data) => {
-        return data.reduce((csvString, rowItem) => {
-            return (
-                csvString +
-                columns
-                    .map(({ accessor }) => escapeCsvCell(accessor(rowItem)))
-                    .join(",") +
-                "\r\n"
-            );
-        }, columns.map(({ name }) => escapeCsvCell(name)).join(",") + "\r\n");
-    };
-
-    const downloadAsCsv = (columns, data, filename) => {
-        const csvData = makeCsvData(columns, data);
-        const csvFile = new Blob([csvData], { type: "text/csv" });
-        const downloadLink = document.createElement("a");
-
-        downloadLink.display = "none";
-        downloadLink.download = filename;
-        downloadLink.href = window.URL.createObjectURL(csvFile);
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-    };
-
-    const handleDownloadCsv = () => {
-        const columns = [
-            { accessor: (item) => item.mobile, name: "Mobile" },
-            { accessor: (item) => item.paymentOption, name: "Payment Method" },
-        ];
-
-        downloadAsCsv(columns, data.nodes, "table");
-    };
-
 
     return (
         <>
-            <AddMobile
+            <AddGroup
                 handleAdd={handleAdd}
                 formValues={formValues}
                 setFormValues={setFormValues}
@@ -480,64 +409,52 @@ const MobileList = () => {
                 itemToEdit={itemToEdit}
                 handleEdit={handleEdit}
                 handleSubmitEdit={handleSubmitEdit}
-                handleSelectChange={handleSelectChange}
-                selectedValue={selectedValue}
             />
-            <button type="button" onClick={handleDownloadCsv}>
-                Download as CSV
-            </button>
-            <div className="border border-stroke p-3">
-                <div className="relative">
-                    <button className="absolute top-1/2 left-0 -translate-y-1/2">
-                        <BsSearch className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary text-xl" />
-                    </button>
-                    <input
-                        type="text"
-                        placeholder={t('searchByMobileNumber')}
-                        value={search}
-                        onChange={handleSearch}
-                        className={`w-full bg-transparent pr-4 pl-9 focus:outline-none ${banglaFontClass}`}
-                    />
-                </div>
-            </div>
+
+            <label htmlFor="search">
+                Search by Task:&nbsp;
+                <input id="search" type="text" value={search} onChange={handleSearch} />
+            </label>
             <br />
-            <div className="max-w-full overflow-x-auto">
-                <Table data={data} layout={{ custom: true, horizontalScroll: true }} pagination={pagination} className="!w-full !table-auto !inline-table">
+            <div className="">
+                <Table data={data} layout={{ custom: true, horizontalScroll: true }} pagination={pagination} className="!max-w-full !overflow-x-auto ">
                     {(tableList) => (
                         <>
-                            <thead>
-                                <tr className="bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('mobileNumber')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('PaymentMethod')}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-white dark:bg-black">
-                                {tableList.map((item) => (
-                                    <tr key={item.id} className="text-center">
-                                        <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <div className="flex gap-2 justify-center">
-                                                <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
-                                                    <BiSolidEdit className='text-base' />
-                                                </button>
-                                                <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
-                                                    <BiTrash className='text-base' />
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.mobile}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.paymentOption}</p>
-                                        </td>
+                            <table className="w-full table-auto ">
+                                <thead>
+                                    <tr className="bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
+                                        <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
+                                        <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                            {t('BranchName')}
+                                        </th>
+                                        <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                            {t('BranchShortName')}
+                                        </th>
                                     </tr>
-                                ))}
-                            </tbody>
+                                </thead>
+                                <tbody className="bg-white">
+                                    {tableList.map((item) => (
+                                        <tr key={item.id} className="text-center">
+                                            <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                                <div className="flex gap-2 justify-center">
+                                                    <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
+                                                        <BiSolidEdit className='text-base' />
+                                                    </button>
+                                                    <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
+                                                        <BiTrash className='text-base' />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                                <p className=" dark:text-white">{item.mobile}</p>
+                                            </td>
+                                            <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                                <p className=" dark:text-white">{item.paymentOption}</p>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </>
                     )}
                 </Table>
@@ -595,4 +512,4 @@ const MobileList = () => {
     );
 };
 
-export default MobileList;
+export default GroupList;
