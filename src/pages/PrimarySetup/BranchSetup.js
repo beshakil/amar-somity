@@ -65,8 +65,13 @@ const BranchSetup = () => {
     const [deletePopup, setDeletePopup] = useState(false);
     const [bankToDelete, setBankToDelete] = useState(null);
 
+    const generateId = () => {
+        // Generate a unique ID based on the current timestamp
+        return new Date().getTime().toString();
+    };
+
     const [formValues, setFormValues] = useState({
-        id: '',
+        id: generateId(),
         branchName: '',
         branchShortName: '',
         mobile: '',
@@ -84,7 +89,7 @@ const BranchSetup = () => {
     }
     const addBranchPopupClose = () => {
         setAddBranchPopup(false)
-        setFormValues({ id: '', branchName: '', branchShortName: '', mobile: '', email: '', telePhone: '', address: '' });
+        setFormValues({ branchName: '', branchShortName: '', mobile: '', email: '', telePhone: '', address: '' });
     }
 
     const SuccessNotify = () => toast.success(
@@ -98,12 +103,15 @@ const BranchSetup = () => {
 
     const handleAddBranch = () => {
         if (formValues.branchName && formValues.branchShortName && formValues.mobile && formValues.email && formValues.telePhone && formValues.address) {
-            setBranchName([...branch, { id: (branch.length + 1).toString(), ...formValues }]);
-            setFormValues({ id: '', branchName: '', branchShortName: '', mobile: '', email: '', telePhone: '', address: '' });
+            const newId = generateId()
+            setBranchName([...branch, { id: newId, ...formValues }]);
+            setFormValues({ branchName: '', branchShortName: '', mobile: '', email: '', telePhone: '', address: '' });
             SuccessNotify()
             addBranchPopupClose();
         }
     };
+
+    console.log('branch', branch)
 
     const handleEditBranch = () => {
         if (formValues.branchName && formValues.branchShortName && formValues.mobile && formValues.email && formValues.telePhone && formValues.address) {
