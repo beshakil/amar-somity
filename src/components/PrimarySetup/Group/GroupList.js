@@ -2,6 +2,8 @@ import { usePagination } from "@table-library/react-table-library/pagination";
 import {
     Table
 } from "@table-library/react-table-library/table";
+import { jsPDF } from "jspdf";
+import 'jspdf-autotable';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +13,6 @@ import { FaRegFilePdf } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
 import { RiFileExcel2Fill } from "react-icons/ri";
 import OutsideClickHandler from 'react-outside-click-handler';
-import { usePDF } from 'react-to-pdf';
 import AddGroup from "./AddGroup";
 
 const nodes = [
@@ -64,9 +65,60 @@ const nodes = [
         id: '10',
         mobile: '01303263591',
         paymentOption: 'Upay',
-    }
+    },
 ]
 
+function createPDF() {
+    const doc = new jsPDF({ orientation: 'landscape' });
+
+    const headers = ['ID', 'Mobile', 'Payment Option'];
+
+    // Calculate the page width and height
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    // Define the company information
+    const companyInfo = {
+        companyName: 'Your Company Name',
+        companyAddress: '123 Main Street, City, Country, Phone: (123) 456-7890',
+        companyEmail: 'Email: info@yourcompany.com',
+    };
+
+    // Set font sizes for company information
+    const fontSizeCompanyName = 14;
+    const fontSizeCompanyInfo = 12;
+
+    // Calculate the text width for center alignment
+    const textWidthCompanyName = doc.getStringUnitWidth(companyInfo.companyName) * fontSizeCompanyName / doc.internal.scaleFactor;
+    const textWidthCompanyInfo = doc.getStringUnitWidth(companyInfo.companyAddress) * fontSizeCompanyInfo / doc.internal.scaleFactor;
+    const textWidthCompanyInfoEmail = doc.getStringUnitWidth(companyInfo.companyEmail) * fontSizeCompanyInfo / doc.internal.scaleFactor;
+
+    const centerXCompanyName = (pageWidth - textWidthCompanyName) / 2;
+    const centerXCompanyInfo = (pageWidth - textWidthCompanyInfo) / 2;
+    const centerXCompanyInfoEmail = (pageWidth - textWidthCompanyInfoEmail) / 2;
+
+    // Set font size and add centered company information
+    doc.setFontSize(fontSizeCompanyName);
+    doc.text(companyInfo.companyName, centerXCompanyName, 10);
+
+    doc.setFontSize(fontSizeCompanyInfo);
+    doc.text(`${companyInfo.companyAddress}`, centerXCompanyInfo, 18);
+    doc.text(companyInfo.companyEmail, centerXCompanyInfoEmail, 26);
+
+    // Move the table down to make space for the company information
+    doc.autoTable({
+        startY: 35, // Adjust the Y position as needed
+        head: [headers],
+        body: nodes.map((item) => [item.id, item.mobile, item.paymentOption]),
+    });
+
+    return doc;
+}
+
+function downloadPDF() {
+    const pdf = createPDF();
+    pdf.save('generated-pdf.pdf');
+}
 
 const GroupList = () => {
 
@@ -93,9 +145,7 @@ const GroupList = () => {
     }
     );
 
-
     // Generate a unique ID with create data based on the current timestamp
-
     const addPopupOpen = () => {
         setAddPopup(true)
     }
@@ -198,10 +248,12 @@ const GroupList = () => {
         }
     };
 
+
+    // For pagination
     const pagination = usePagination(data, {
         state: {
             page: 0,
-            size: 50,
+            size: 5,
         },
         onChange: onPaginationChange,
     });
@@ -209,9 +261,9 @@ const GroupList = () => {
     function onPaginationChange(action, state) {
         console.log(action, state);
     }
+    // For pagination
 
     // CVC Download
-
     const escapeCsvCell = (cell) => {
         if (cell == null) {
             return "";
@@ -264,13 +316,20 @@ const GroupList = () => {
 
         downloadAsCsv(columns, data.nodes, "table");
     };
+    // CVC Download
 
+    // OnClick Print
     const handlePrint = () => {
         window.print(); // Trigger the browser's print dialog
     };
+    // OnClick Print
 
-    const { toPDF, targetRef } = usePDF({ filename: 'page.pdf' });
-
+    const [loader, setLoader] = React.useState(false);
+    const handleDownloadPdf = () => {
+        setLoader(true);
+        downloadPDF()
+        setLoader(false);
+    }
 
     return (
         <>
@@ -286,8 +345,8 @@ const GroupList = () => {
                 handleSubmitEdit={handleSubmitEdit}
             />
 
-            <div className="print:hidden flex items-center gap-4">
-                <div className=" border border-stroke p-2 w-[62%]">
+            <div className="print:hidden flex items-center gap-2">
+                <div className=" border border-stroke p-2 w-[60%]">
                     <div className="relative">
                         <button className="absolute top-1/2 left-0 -translate-y-1/2">
                             <BsSearch className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary text-xl" />
@@ -301,14 +360,23 @@ const GroupList = () => {
                         />
                     </div>
                 </div>
-                <div className="flex items-center justify-between gap-2 w-[38%]">
+                <div className="flex items-center justify-end gap-2 w-[40%]">
                     <button type="button" onClick={handleDownloadCsv} className='flex gap-2 items-center border border-stroke p-2 bg-[#20744A] text-white'>
                         <RiFileExcel2Fill className='text-white text-2xl' />
                         <p className={`${banglaFontClass}`}>{t('ExcelDownload')}</p>
                     </button>
-                    <button onClick={toPDF} type="button" className='flex gap-2 items-center border border-stroke p-2 bg-meta-4 text-white'>
+                    <button onClick={handleDownloadPdf}
+                        disabled={!(loader === false)}
+                        type="button"
+                        className='flex gap-2 items-center border border-stroke p-2 bg-meta-4 text-white'>
                         <FaRegFilePdf className='text-white text-base' />
-                        <p className={`${banglaFontClass}`}>{t('PDFDownload')}</p>
+                        <p className={`${banglaFontClass}`}>
+                            {loader ? (
+                                <span>Downloading</span>
+                            ) : (
+                                <span>{t('PDFDownload')}</span>
+                            )}
+                        </p>
                     </button>
                     <button onClick={handlePrint} type="button" className='flex gap-2 items-center border border-stroke p-2 bg-[#FF6A00] text-white'>
                         <BsPrinter className='text-white text-base' />
@@ -317,13 +385,14 @@ const GroupList = () => {
                 </div>
             </div>
             <br />
-            <div className="max-w-full overflow-x-auto " ref={targetRef}>
+            {/* <div className="max-w-full overflow-x-auto actual-receipt" ref={targetRef}> */}
+            <div className="max-w-full overflow-x-auto actual-receipt">
                 <Table data={data} layout={{ custom: true, horizontalScroll: true }} pagination={pagination} className="!w-full !table-auto !inline-table">
                     {(tableList) => (
                         <>
                             <thead>
                                 <tr className=" bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
-                                    <th className={`print:hidden ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
+                                    <th className={`print:hidden ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`} data-html2canvas-ignore="true"></th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('BranchName')}
                                     </th>
@@ -338,7 +407,7 @@ const GroupList = () => {
                             <tbody className="bg-white dark:bg-black">
                                 {tableList.map((item) => (
                                     <tr key={item.id} className="text-center">
-                                        <td className=" print:hidden border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                        <td className=" print:hidden border border-[#eee] py-2 px-2 dark:border-strokedark" data-html2canvas-ignore="true">
                                             <div className="flex gap-2 justify-center">
                                                 <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
                                                     <BiSolidEdit className='text-base' />
