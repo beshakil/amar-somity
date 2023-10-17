@@ -315,7 +315,7 @@ const MobileList = () => {
     const handleAdd = () => {
         if (formValues.mobile && formValues.paymentOption) {
             const newId = generateId()
-            const newData = [...data.nodes, { id: newId, ...formValues }];
+            const newData = [{ id: newId, ...formValues }, ...data.nodes];
             setData({ nodes: newData });
             setFormValues({ mobile: '', paymentOption: '' });
             SuccessNotify();
@@ -403,7 +403,7 @@ const MobileList = () => {
     const pagination = usePagination(data, {
         state: {
             page: 0,
-            size: 6,
+            size: 5,
         },
         onChange: onPaginationChange,
     });
@@ -483,10 +483,10 @@ const MobileList = () => {
                 handleSelectChange={handleSelectChange}
                 selectedValue={selectedValue}
             />
-            <button type="button" onClick={handleDownloadCsv}>
+            {/* <button type="button" onClick={handleDownloadCsv}>
                 Download as CSV
-            </button>
-            <div className="border border-stroke p-3">
+            </button> */}
+            <div className="border border-stroke p-2">
                 <div className="relative">
                     <button className="absolute top-1/2 left-0 -translate-y-1/2">
                         <BsSearch className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary text-xl" />
@@ -542,20 +542,17 @@ const MobileList = () => {
                     )}
                 </Table>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>Total Pages: {pagination.state.getTotalPages(data.nodes)}</span>
-
-                <span>
+            <div className="flex justify-between py-4">
+                <span className="text-lg">Total Pages: {pagination.state.getTotalPages(data.nodes)}</span>
+                <span className="text-lg">
                     Page:{" "}
                     {pagination.state.getPages(data.nodes).map((_, index) => (
                         <button
                             key={index}
                             type="button"
-                            style={{
-                                fontWeight: pagination.state.page === index ? "bold" : "normal",
-                            }}
-                            onClick={() => pagination.fns.onSetPage(index)}
-                        >
+                            style={{ fontWeight: pagination.state.page === index ? "bold" : "normal" }}
+                            className={` ${pagination.state.page === index ? "bg-primary text-white py-[2px] px-2 rounded" : ""} last:mr-0 text-lg mr-3`}
+                            onClick={() => pagination.fns.onSetPage(index)}>
                             {index + 1}
                         </button>
                     ))}

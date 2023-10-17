@@ -6,8 +6,12 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
+import { BsPrinter, BsSearch } from "react-icons/bs";
+import { FaRegFilePdf } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
+import { RiFileExcel2Fill } from "react-icons/ri";
 import OutsideClickHandler from 'react-outside-click-handler';
+import { usePDF } from 'react-to-pdf';
 import AddGroup from "./AddGroup";
 
 const nodes = [
@@ -60,197 +64,7 @@ const nodes = [
         id: '10',
         mobile: '01303263591',
         paymentOption: 'Upay',
-    },
-    {
-        id: '11',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '12',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '13',
-        mobile: '0188',
-        paymentOption: 'Bkash',
-    },
-    {
-        id: '14',
-        mobile: '0155',
-        paymentOption: 'Nagad',
-    },
-    {
-        id: '15',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '16',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '17',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '18',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '19',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '20',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '21',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '22',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '23',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '24',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '25',
-        mobile: '0188',
-        paymentOption: 'Bkash',
-    },
-    {
-        id: '26',
-        mobile: '0155',
-        paymentOption: 'Nagad',
-    },
-    {
-        id: '27',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '28',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '29',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '30',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '31',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '32',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '33',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '34',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '35',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '36',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '37',
-        mobile: '0188',
-        paymentOption: 'Bkash',
-    },
-    {
-        id: '38',
-        mobile: '0155',
-        paymentOption: 'Nagad',
-    },
-    {
-        id: '39',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '40',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '41',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '42',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '43',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '44',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '44',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '45',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '46',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '47',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
+    }
 ]
 
 
@@ -387,7 +201,7 @@ const GroupList = () => {
     const pagination = usePagination(data, {
         state: {
             page: 0,
-            size: 6,
+            size: 50,
         },
         onChange: onPaginationChange,
     });
@@ -395,6 +209,67 @@ const GroupList = () => {
     function onPaginationChange(action, state) {
         console.log(action, state);
     }
+
+    // CVC Download
+
+    const escapeCsvCell = (cell) => {
+        if (cell == null) {
+            return "";
+        }
+        const sc = cell.toString().trim();
+        if (sc === "" || sc === '""') {
+            return sc;
+        }
+        if (
+            sc.includes('"') ||
+            sc.includes(",") ||
+            sc.includes("\n") ||
+            sc.includes("\r")
+        ) {
+            return '"' + sc.replace(/"/g, '""') + '"';
+        }
+        return sc;
+    };
+
+    const makeCsvData = (columns, data) => {
+        return data.reduce((csvString, rowItem) => {
+            return (
+                csvString +
+                columns
+                    .map(({ accessor }) => escapeCsvCell(accessor(rowItem)))
+                    .join(",") +
+                "\r\n"
+            );
+        }, columns.map(({ name }) => escapeCsvCell(name)).join(",") + "\r\n");
+    };
+
+    const downloadAsCsv = (columns, data, filename) => {
+        const csvData = makeCsvData(columns, data);
+        const csvFile = new Blob([csvData], { type: "text/csv" });
+        const downloadLink = document.createElement("a");
+
+        downloadLink.display = "none";
+        downloadLink.download = filename;
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    };
+
+    const handleDownloadCsv = () => {
+        const columns = [
+            { accessor: (item) => item.mobile, name: "Mobile" },
+            { accessor: (item) => item.paymentOption, name: "Payment Method" },
+        ];
+
+        downloadAsCsv(columns, data.nodes, "table");
+    };
+
+    const handlePrint = () => {
+        window.print(); // Trigger the browser's print dialog
+    };
+
+    const { toPDF, targetRef } = usePDF({ filename: 'page.pdf' });
 
 
     return (
@@ -411,68 +286,95 @@ const GroupList = () => {
                 handleSubmitEdit={handleSubmitEdit}
             />
 
-            <label htmlFor="search">
-                Search by Task:&nbsp;
-                <input id="search" type="text" value={search} onChange={handleSearch} />
-            </label>
+            <div className="print:hidden flex items-center gap-4">
+                <div className=" border border-stroke p-2 w-[62%]">
+                    <div className="relative">
+                        <button className="absolute top-1/2 left-0 -translate-y-1/2">
+                            <BsSearch className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary text-xl" />
+                        </button>
+                        <input
+                            type="text"
+                            placeholder={t('searchByMobileNumber')}
+                            value={search}
+                            onChange={handleSearch}
+                            className={`w-full bg-transparent pr-4 pl-9 focus:outline-none ${banglaFontClass}`}
+                        />
+                    </div>
+                </div>
+                <div className="flex items-center justify-between gap-2 w-[38%]">
+                    <button type="button" onClick={handleDownloadCsv} className='flex gap-2 items-center border border-stroke p-2 bg-[#20744A] text-white'>
+                        <RiFileExcel2Fill className='text-white text-2xl' />
+                        <p className={`${banglaFontClass}`}>{t('ExcelDownload')}</p>
+                    </button>
+                    <button onClick={toPDF} type="button" className='flex gap-2 items-center border border-stroke p-2 bg-meta-4 text-white'>
+                        <FaRegFilePdf className='text-white text-base' />
+                        <p className={`${banglaFontClass}`}>{t('PDFDownload')}</p>
+                    </button>
+                    <button onClick={handlePrint} type="button" className='flex gap-2 items-center border border-stroke p-2 bg-[#FF6A00] text-white'>
+                        <BsPrinter className='text-white text-base' />
+                        <p className={`${banglaFontClass}`}>{t('print')}</p>
+                    </button>
+                </div>
+            </div>
             <br />
-            <div className="">
-                <Table data={data} layout={{ custom: true, horizontalScroll: true }} pagination={pagination} className="!max-w-full !overflow-x-auto ">
+            <div className="max-w-full overflow-x-auto " ref={targetRef}>
+                <Table data={data} layout={{ custom: true, horizontalScroll: true }} pagination={pagination} className="!w-full !table-auto !inline-table">
                     {(tableList) => (
                         <>
-                            <table className="w-full table-auto ">
-                                <thead>
-                                    <tr className="bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
-                                        <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
-                                        <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                            {t('BranchName')}
-                                        </th>
-                                        <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                            {t('BranchShortName')}
-                                        </th>
+                            <thead>
+                                <tr className=" bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
+                                    <th className={`print:hidden ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('BranchName')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('GroupName')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('member')}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white dark:bg-black">
+                                {tableList.map((item) => (
+                                    <tr key={item.id} className="text-center">
+                                        <td className=" print:hidden border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <div className="flex gap-2 justify-center">
+                                                <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
+                                                    <BiSolidEdit className='text-base' />
+                                                </button>
+                                                <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
+                                                    <BiTrash className='text-base' />
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.mobile}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.paymentOption}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.paymentOption}</p>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody className="bg-white">
-                                    {tableList.map((item) => (
-                                        <tr key={item.id} className="text-center">
-                                            <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                                <div className="flex gap-2 justify-center">
-                                                    <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
-                                                        <BiSolidEdit className='text-base' />
-                                                    </button>
-                                                    <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
-                                                        <BiTrash className='text-base' />
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                                <p className=" dark:text-white">{item.mobile}</p>
-                                            </td>
-                                            <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                                <p className=" dark:text-white">{item.paymentOption}</p>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                ))}
+                            </tbody>
                         </>
                     )}
                 </Table>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>Total Pages: {pagination.state.getTotalPages(data.nodes)}</span>
-
-                <span>
+            <div className="flex justify-between py-4">
+                <span className="text-lg">Total Pages: {pagination.state.getTotalPages(data.nodes)}</span>
+                <span className="text-lg">
                     Page:{" "}
                     {pagination.state.getPages(data.nodes).map((_, index) => (
                         <button
                             key={index}
                             type="button"
-                            style={{
-                                fontWeight: pagination.state.page === index ? "bold" : "normal",
-                            }}
-                            onClick={() => pagination.fns.onSetPage(index)}
-                        >
+                            style={{ fontWeight: pagination.state.page === index ? "bold" : "normal" }}
+                            className={` ${pagination.state.page === index ? "bg-primary text-white py-[2px] px-2 rounded" : ""} last:mr-0 text-lg mr-3`}
+                            onClick={() => pagination.fns.onSetPage(index)}>
                             {index + 1}
                         </button>
                     ))}

@@ -13,11 +13,11 @@ const AddGroup = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
             <div className='pb-6 pt-3 md:pt-0'>
                 <div className='flex justify-between items-center'>
                     <button className={`${banglaFontClass} text-2xl md:text-[28px] font-bold`}>
-                        {t('BranchList')}
+                        {t('Group')} {t('list')}
                     </button>
                     <button onClick={addPopupOpen} className='flex gap-2 py-1 md:py-2 px-3 md:px-4 bg-primary text-white items-center'>
                         <MdAddCircle className='text-xl' />
-                        <p className={`${banglaFontClass} text-lg`}>{t('NewBranchAdd')}</p>
+                        <p className={`${banglaFontClass} text-lg`}>{t('NewGroupAdd')}</p>
                     </button>
                 </div>
             </div>

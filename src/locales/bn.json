@@ -6,7 +6,7 @@
   "addNew": "যোগ করুন",
   "userList": "ইউজার তালিকা",
   "customers": "গ্রাহক",
-  "member": "গ্রাহক",
+  "member": "গ্রাহক সমূহ",
   "customerList": "গ্রাহক তালিকা",
   "customerSheet": "আদায় শীট",
   "customerLeaser": "গ্রাহক লেজার",
@@ -82,7 +82,7 @@
   "monthly": "মাসিক",
   "yearly": "বাৎসরিক",
   "joma": "জমা",
-  "ExcelDownload": "এক্সেল ফাইল ডাউনলোড",
+  "ExcelDownload": "এক্সেল ডাউনলোড",
   "statement": "স্টেটমেন্ট",
   "print": " প্রিন্ট",
   "searchByDate": "তারিখ অনুযায়ী খুঁজুন",
@@ -181,5 +181,9 @@
   "Bkash": "বিকাশ",
   "Nagad": "নগদ",
   "list": "তালিকা",
+  "GroupName": "সমিতি/গ্রুপ নাম",
+  "Group": "সমিতি/গ্রুপ",
+  "NewGroupAdd": "নতুন সমিতি/গ্রুপ",
+  "PDFDownload": "PDF ডাউনলোড",
   "dashboard": "ড্যাশবোর্ড"
 }
