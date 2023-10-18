@@ -13,11 +13,11 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
             <div className='pb-6 pt-3 md:pt-0'>
                 <div className='flex justify-between items-center'>
                     <div className={`${banglaFontClass} text-lg md:text-[28px] font-bold`}>
-                        {t('mobileNumber')} {t('list')}
+                        {t('AddList')}
                     </div>
                     <button onClick={addPopupOpen} className='flex gap-2 py-1 md:py-2 px-2 md:px-4 bg-primary text-white items-center'>
                         <MdAddCircle className='text-sm md:text-xl' />
-                        <p className={`${banglaFontClass} text-base md:text-lg`}>{t('NewMobileAdd')}</p>
+                        <p className={`${banglaFontClass} text-base md:text-lg`}>{t('AddNewStaff')}</p>
                     </button>
                 </div>
             </div>
@@ -29,9 +29,9 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                 <div className='flex justify-between items-center border-b border-stroke pb-2'>
                                     <div>
                                         {itemToEdit ? (
-                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('NumberEdit')}</p>
+                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('StaffEdit')}</p>
                                         ) : (
-                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('NewMobileAdd')}</p>
+                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('AddNewStaff')}</p>
                                         )}
                                     </div>
                                     <div>

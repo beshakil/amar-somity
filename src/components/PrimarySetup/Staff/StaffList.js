@@ -8,14 +8,33 @@ import { useTranslation } from 'react-i18next';
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
+import { RxDropdownMenu } from "react-icons/rx";
 import OutsideClickHandler from 'react-outside-click-handler';
 import AddStaff from "./AddStaff";
 
 const nodes = [
     {
         id: '1',
-        mobile: '0188',
         paymentOption: 'Bkash',
+        staffName: "Shakil Ahmed",
+        designation: "Manager",
+        joiningDate: "01-01-2023",
+        fatherName: "Mozammel Haq",
+        motherName: "Shirin Akter",
+        mobile: "01303263591",
+        email: "z1Fq3@example.com",
+        nid: "123456789",
+        address: "Uttara, Dhaka",
+        image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
+        salary: "20000",
+        houseRent: "1000",
+        medicalAllowance: "100",
+        travelAllowance: "100",
+        internetAllowance: "100",
+        group: "Main Branch",
+        userName: "andormohol4",
+        password: "123456",
+        status: "Active",
     },
     {
         id: '2',
@@ -24,231 +43,6 @@ const nodes = [
     },
     {
         id: '3',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '4',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '5',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '6',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '7',
-        mobile: '77',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '8',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '9',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '10',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '11',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '12',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '13',
-        mobile: '0188',
-        paymentOption: 'Bkash',
-    },
-    {
-        id: '14',
-        mobile: '0155',
-        paymentOption: 'Nagad',
-    },
-    {
-        id: '15',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '16',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '17',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '18',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '19',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '20',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '21',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '22',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '23',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '24',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '25',
-        mobile: '0188',
-        paymentOption: 'Bkash',
-    },
-    {
-        id: '26',
-        mobile: '0155',
-        paymentOption: 'Nagad',
-    },
-    {
-        id: '27',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '28',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '29',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '30',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '31',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '32',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '33',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '34',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '35',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '36',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '37',
-        mobile: '0188',
-        paymentOption: 'Bkash',
-    },
-    {
-        id: '38',
-        mobile: '0155',
-        paymentOption: 'Nagad',
-    },
-    {
-        id: '39',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '40',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '41',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '42',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '43',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '44',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '44',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '45',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '46',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-    {
-        id: '47',
         mobile: '01303263591',
         paymentOption: 'Upay',
     },
@@ -509,10 +303,34 @@ const StaffList = () => {
                                 <tr className="bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Photo')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('StaffName')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Designation')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('UserType')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('JoiningDate')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('mobileNumber')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('PaymentMethod')}
+                                        {t('Salary')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('SecurityMoney')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Group')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Status')}
                                     </th>
                                 </tr>
                             </thead>
@@ -520,20 +338,45 @@ const StaffList = () => {
                                 {tableList.map((item) => (
                                     <tr key={item.id} className="text-center">
                                         <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            {/* <RxDropdownMenu /> */}
                                             <div className="flex gap-2 justify-center">
                                                 <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
                                                     <BiSolidEdit className='text-base' />
                                                 </button>
-                                                <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
+                                                {/* <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
                                                     <BiTrash className='text-base' />
-                                                </button>
+                                                </button> */}
                                             </div>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark flex justify-center">
+                                            <img className="w-8 h-8" src="https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp" />
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.staffName}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.designation}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">Super Admin</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.joiningDate}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.mobile}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.paymentOption}</p>
+                                            <p className=" dark:text-white">{item.salary}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">1000</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">Uttara</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.status}</p>
                                         </td>
                                     </tr>
                                 ))}
