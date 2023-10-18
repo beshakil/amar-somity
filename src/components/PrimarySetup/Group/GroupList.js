@@ -18,107 +18,66 @@ import AddGroup from "./AddGroup";
 const nodes = [
     {
         id: '1',
-        mobile: '0188',
-        paymentOption: 'Bkash',
+        branchName: '0188',
+        groupName: 'Bkash',
+        members: 10,
     },
     {
         id: '2',
-        mobile: '0155',
-        paymentOption: 'Nagad',
+        branchName: '0155',
+        groupName: 'Nagad',
+        members: 10,
     },
     {
         id: '3',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
+        branchName: '01303263591',
+        groupName: 'Upay',
+        members: 10,
     },
     {
         id: '4',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
+        branchName: '01303263591',
+        groupName: 'Upay',
+        members: 10,
     },
     {
         id: '5',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
+        branchName: '01303263591',
+        groupName: 'Upay',
+        members: 10,
     },
     {
         id: '6',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
+        branchName: '01303263591',
+        groupName: 'Upay',
+        members: 10,
     },
     {
         id: '7',
-        mobile: '77',
-        paymentOption: 'Upay',
+        branchName: '77',
+        groupName: 'Upay',
+        members: 10,
     },
     {
         id: '8',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
+        branchName: '01303263591',
+        groupName: 'Upay',
+        members: 10,
     },
     {
         id: '9',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
+        branchName: '01303263591',
+        groupName: 'Upay',
+        members: 10,
     },
     {
         id: '10',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
+        branchName: '01303263591',
+        groupName: 'Upay',
+        members: 10,
     },
 ]
 
-function createPDF() {
-    const doc = new jsPDF({ orientation: 'landscape' });
-
-    const headers = ['ID', 'Mobile', 'Payment Option'];
-
-    // Calculate the page width and height
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-
-    // Define the company information
-    const companyInfo = {
-        companyName: 'Your Company Name',
-        companyAddress: '123 Main Street, City, Country, Phone: (123) 456-7890',
-        companyEmail: 'Email: info@yourcompany.com',
-    };
-
-    // Set font sizes for company information
-    const fontSizeCompanyName = 14;
-    const fontSizeCompanyInfo = 12;
-
-    // Calculate the text width for center alignment
-    const textWidthCompanyName = doc.getStringUnitWidth(companyInfo.companyName) * fontSizeCompanyName / doc.internal.scaleFactor;
-    const textWidthCompanyInfo = doc.getStringUnitWidth(companyInfo.companyAddress) * fontSizeCompanyInfo / doc.internal.scaleFactor;
-    const textWidthCompanyInfoEmail = doc.getStringUnitWidth(companyInfo.companyEmail) * fontSizeCompanyInfo / doc.internal.scaleFactor;
-
-    const centerXCompanyName = (pageWidth - textWidthCompanyName) / 2;
-    const centerXCompanyInfo = (pageWidth - textWidthCompanyInfo) / 2;
-    const centerXCompanyInfoEmail = (pageWidth - textWidthCompanyInfoEmail) / 2;
-
-    // Set font size and add centered company information
-    doc.setFontSize(fontSizeCompanyName);
-    doc.text(companyInfo.companyName, centerXCompanyName, 10);
-
-    doc.setFontSize(fontSizeCompanyInfo);
-    doc.text(`${companyInfo.companyAddress}`, centerXCompanyInfo, 18);
-    doc.text(companyInfo.companyEmail, centerXCompanyInfoEmail, 26);
-
-    // Move the table down to make space for the company information
-    doc.autoTable({
-        startY: 35, // Adjust the Y position as needed
-        head: [headers],
-        body: nodes.map((item) => [item.id, item.mobile, item.paymentOption]),
-    });
-
-    return doc;
-}
-
-function downloadPDF() {
-    const pdf = createPDF();
-    pdf.save('generated-pdf.pdf');
-}
 
 const GroupList = () => {
 
@@ -156,16 +115,16 @@ const GroupList = () => {
 
     const [formValues, setFormValues] = React.useState({
         id: generateId(),
-        mobile: '',
-        paymentOption: '',
+        branchName: '',
+        groupName: '',
     });
 
     const handleAdd = () => {
-        if (formValues.mobile && formValues.paymentOption) {
+        if (formValues.branchName && formValues.groupName) {
             const newId = generateId()
-            const newData = [...data.nodes, { id: newId, ...formValues }];
+            const newData = [{ id: newId, ...formValues }, ...data.nodes];
             setData({ nodes: newData });
-            setFormValues({ mobile: '', paymentOption: '' });
+            setFormValues({ branchName: '', groupName: '' });
             SuccessNotify();
             addPopupClose();
         }
@@ -176,8 +135,8 @@ const GroupList = () => {
         setItemToEdit(item);
         setFormValues({
             id: item.id,
-            mobile: item.mobile,
-            paymentOption: item.paymentOption,
+            branchName: item.branchName,
+            groupName: item.groupName,
         });
         setAddPopup(true);
     };
@@ -191,8 +150,8 @@ const GroupList = () => {
             const updatedData = [...data.nodes];
             updatedData[index] = {
                 id: itemToEdit.id,
-                mobile: formValues.mobile,
-                paymentOption: formValues.paymentOption,
+                branchName: formValues.branchName,
+                groupName: formValues.groupName,
             };
 
             // Update the data and close the edit popup
@@ -200,13 +159,13 @@ const GroupList = () => {
             SuccessNotify();
             setAddPopup(false);
             setItemToEdit(null);
-            setFormValues({ mobile: '', paymentOption: '' });
+            setFormValues({ branchName: '', groupName: '' });
         }
     };
 
     const addPopupClose = () => {
         setAddPopup(false)
-        setFormValues({ mobile: '', paymentOption: '' });
+        setFormValues({ branchName: '', groupName: '' });
     }
 
     const handleRemoveData = (id) => {
@@ -240,7 +199,7 @@ const GroupList = () => {
         } else {
             // Filter the data based on the search term from the data state
             const filteredData = data.nodes.filter((node) =>
-                node.mobile.toLowerCase().includes(searchTerm)
+                node.branchName.toLowerCase().includes(searchTerm)
             );
 
             // Update the data with the filtered results
@@ -310,8 +269,8 @@ const GroupList = () => {
 
     const handleDownloadCsv = () => {
         const columns = [
-            { accessor: (item) => item.mobile, name: "Mobile" },
-            { accessor: (item) => item.paymentOption, name: "Payment Method" },
+            { accessor: (item) => item.branchName, name: "branchName" },
+            { accessor: (item) => item.groupName, name: "Payment Method" },
         ];
 
         downloadAsCsv(columns, data.nodes, "table");
@@ -324,12 +283,67 @@ const GroupList = () => {
     };
     // OnClick Print
 
+
+    // OnClick Download PDF
     const [loader, setLoader] = React.useState(false);
     const handleDownloadPdf = () => {
         setLoader(true);
         downloadPDF()
         setLoader(false);
     }
+
+    function createPDF() {
+        const doc = new jsPDF({ orientation: 'landscape' });
+
+        const headers = ['ID', 'branchName', 'Payment Option'];
+
+        // Calculate the page width and height
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+
+        // Define the company information
+        const companyInfo = {
+            companyName: 'Your Company Name',
+            companyAddress: '123 Main Street, City, Country, Phone: (123) 456-7890',
+            companyEmail: 'Email: info@yourcompany.com',
+        };
+
+        // Set font sizes for company information
+        const fontSizeCompanyName = 14;
+        const fontSizeCompanyInfo = 12;
+
+        // Calculate the text width for center alignment
+        const textWidthCompanyName = doc.getStringUnitWidth(companyInfo.companyName) * fontSizeCompanyName / doc.internal.scaleFactor;
+        const textWidthCompanyInfo = doc.getStringUnitWidth(companyInfo.companyAddress) * fontSizeCompanyInfo / doc.internal.scaleFactor;
+        const textWidthCompanyInfoEmail = doc.getStringUnitWidth(companyInfo.companyEmail) * fontSizeCompanyInfo / doc.internal.scaleFactor;
+
+        const centerXCompanyName = (pageWidth - textWidthCompanyName) / 2;
+        const centerXCompanyInfo = (pageWidth - textWidthCompanyInfo) / 2;
+        const centerXCompanyInfoEmail = (pageWidth - textWidthCompanyInfoEmail) / 2;
+
+        // Set font size and add centered company information
+        doc.setFontSize(fontSizeCompanyName);
+        doc.text(companyInfo.companyName, centerXCompanyName, 10);
+
+        doc.setFontSize(fontSizeCompanyInfo);
+        doc.text(`${companyInfo.companyAddress}`, centerXCompanyInfo, 18);
+        doc.text(companyInfo.companyEmail, centerXCompanyInfoEmail, 26);
+
+        // Move the table down to make space for the company information
+        doc.autoTable({
+            startY: 35, // Adjust the Y position as needed
+            head: [headers],
+            body: data.nodes.map((item) => [item.id, item.branchName, item.groupName]),
+        });
+
+        return doc;
+    }
+
+    function downloadPDF() {
+        const pdf = createPDF();
+        pdf.save('generated-pdf.pdf');
+    }
+    // OnClick Download PDF
 
     return (
         <>
@@ -353,7 +367,7 @@ const GroupList = () => {
                         </button>
                         <input
                             type="text"
-                            placeholder={t('searchByMobileNumber')}
+                            placeholder={t('searchByBranchName')}
                             value={search}
                             onChange={handleSearch}
                             className={`w-full bg-transparent pr-4 pl-9 focus:outline-none ${banglaFontClass}`}
@@ -418,13 +432,13 @@ const GroupList = () => {
                                             </div>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.mobile}</p>
+                                            <p className=" dark:text-white">{item.branchName}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.paymentOption}</p>
+                                            <p className=" dark:text-white">{item.groupName}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.paymentOption}</p>
+                                            <p className=" dark:text-white">{item.members}</p>
                                         </td>
                                     </tr>
                                 ))}

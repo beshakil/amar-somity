@@ -28,13 +28,10 @@ const AddGroup = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                             <div className='w-[320px] md:w-[600px] bg-white dark:bg-graydark p-5 rounded-md animate__animated animate__zoomIn animate__faster'>
                                 <div className='flex justify-between items-center border-b border-stroke pb-2'>
                                     <div>
-
-                                        {/* <p className={`${banglaFontClass} font-bold text-xl`} >{t('NewBranchAdd')} </p> */}
-
                                         {itemToEdit ? (
                                             <p className={`${banglaFontClass} font-bold text-xl`} >{t('BranchEdit')}</p>
                                         ) : (
-                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('NewBranchAdd')}</p>
+                                            <p className={`${banglaFontClass} font-bold text-xl`} >{t('NewGroupAdd')}</p>
                                         )}
                                     </div>
                                     <div>
@@ -51,19 +48,19 @@ const AddGroup = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.branchName}
+                                                onChange={(e) => setFormValues({ ...formValues, branchName: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('BranchShortName')}</label>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('GroupName')}</label>
                                             <input
                                                 required
                                                 type="text"
                                                 name="paymentOption"
-                                                value={formValues.paymentOption}
-                                                onChange={(e) => setFormValues({ ...formValues, paymentOption: e.target.value })}
+                                                value={formValues.groupName}
+                                                onChange={(e) => setFormValues({ ...formValues, groupName: e.target.value })}
                                                 className='w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                                             />
                                         </div>
