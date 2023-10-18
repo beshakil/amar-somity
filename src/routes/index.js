@@ -5,7 +5,7 @@ const AddUser = lazy(() => import('../pages/User/AddUser'));
 const UserList = lazy(() => import('../pages/User/UserList'));
 
 const BranchSetup = lazy(() => import('../pages/PrimarySetup/BranchSetup'));
-const StaffList = lazy(() => import('../pages/PrimarySetup/StaffList'));
+const StaffSetup = lazy(() => import('../pages/PrimarySetup/StaffSetup'));
 const AreaList = lazy(() => import('../pages/PrimarySetup/AreaList'));
 const SomityAndGroupSetup = lazy(() => import('../pages/PrimarySetup/SomityAndGroupSetup'));
 const DirectorList = lazy(() => import('../pages/PrimarySetup/DirectorList'));
@@ -103,9 +103,9 @@ const coreRoutes = [
     component: BranchSetup,
   },
   {
-    path: '/staff-list',
-    title: 'Staff List',
-    component: StaffList,
+    path: '/staff-setup',
+    title: 'Staff Setup',
+    component: StaffSetup,
   },
   {
     path: '/area-list',

@@ -14,7 +14,7 @@ import { ImCalculator } from "react-icons/im";
 import { PiUserListFill } from "react-icons/pi";
 import { TbReport, TbCategory, TbFileInvoice, TbReportAnalytics } from "react-icons/tb";
 import { HiOutlineDocumentReport } from "react-icons/hi";
-import { PiPackageFill, PiUserCircleGearFill, PiPercentFill} from "react-icons/pi";
+import { PiPackageFill, PiUserCircleGearFill, PiPercentFill } from "react-icons/pi";
 import { VscSettings, VscCloseAll } from "react-icons/vsc";
 import { GoGitBranch } from "react-icons/go";
 import { GiCherish } from "react-icons/gi";
@@ -123,17 +123,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/' ||
                   pathname.includes('dashboard')) &&
                   'bg-graydark dark:bg-meta-4'}`}>
-                <RxDashboard className='text-lg'/>
+                <RxDashboard className='text-lg' />
                 {t('dashboard')}
               </NavLink>
 
-              <SidebarLinkGroup activeCondition={ pathname === '/branch-setup' || pathname === '/staff-list' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking'}>
-                {(handleClick, open) => { 
+              <SidebarLinkGroup activeCondition={pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking'}>
+                {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/branch-setup' || pathname === '/staff-list' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking' ? 'bg-graydark dark:bg-meta-4' : "")}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded
@@ -214,7 +214,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
-                              to="/staff-list"
+                              to="/staff-setup"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
@@ -223,7 +223,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               {t('StaffList')}
                             </NavLink>
                           </li>
-                          
+
                           <li className={`${banglaFontClass}`}>
                             <NavLink
                               to="/area-list"
@@ -319,7 +319,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 }}
               </SidebarLinkGroup>
 
-              <SidebarLinkGroup activeCondition={ pathname === '/addcustomer' || pathname === '/customerlist'}>
+              <SidebarLinkGroup activeCondition={pathname === '/addcustomer' || pathname === '/customerlist'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
@@ -330,7 +330,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <FaUsers className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('customers')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
@@ -377,7 +378,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <MdAccountBalanceWallet className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('accounts')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
@@ -435,7 +437,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')}>
-                              <FaSpa  className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              <FaSpa className={`text-base ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
                               {t('insurance')}
                             </NavLink>
                           </li>
@@ -457,7 +459,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <IoArrowRedo className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('Credits')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
@@ -559,7 +562,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <IoArrowUndo className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('Debits')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
@@ -661,13 +665,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <FaChartLine className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('OtherTransactions')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
                       </NavLink>
                       <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">                      
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li className={`${banglaFontClass}`}>
                             <NavLink
                               to="/general-expense"
@@ -785,13 +790,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <TbReport className={`text-xl ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('AllReports')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
                       </NavLink>
                       <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">                      
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li className={`${banglaFontClass}`}>
                             <NavLink
                               to="/admission-register"
@@ -953,7 +959,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 }}
               </SidebarLinkGroup>
 
-              <SidebarLinkGroup activeCondition={ pathname === '/collection-sheet' || pathname === '/daily-collection-sheet'}>
+              <SidebarLinkGroup activeCondition={pathname === '/collection-sheet' || pathname === '/daily-collection-sheet'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
@@ -964,7 +970,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <FaDownload className={`text-base ${currentLanguage === 'bn' ? "-mt-[6px]" : "-mt-[4px]"}`} />
                         {t('SheetDownload')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
@@ -1012,7 +1019,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           e.preventDefault();
                           sidebarExpanded
                             ? handleClick()
-                            : setSidebarExpanded(true);}}>
+                            : setSidebarExpanded(true);
+                        }}>
                         <FaSms className={`text-lg ${currentLanguage === 'bn' ? "-mt-[3px]" : "-mt-[4px]"}`} />
                         {t('MobileSMS')}
                         <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${open && 'rotate-180'} text-2xl`} />
