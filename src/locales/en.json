@@ -175,11 +175,12 @@
   "list": "List",
   "GroupName": "Group/Somity Name",
   "Group": "Group/Somity",
+  "selectType": "Select",
   "NewGroupAdd": "New Group Add",
   "PDFDownload": "PDF Download",
   "searchByBranchName": "Search By Branch Name",
   "AddNewStaff": "Add New Staff",
-  "AddList": "Add List",
+  "AddDirectorList": "Add Staff/Director List",
   "StaffEdit": "Staff Edit",
   "StaffName": "Staff Name",
   "Designation": "Designation",
@@ -194,5 +195,7 @@
   "Panel": "Panel",
   "Status": "Status",
   "Photo": "Photo",
+  "Active": "Active",
+  "Deactivate": "Deactivate",
   "dashboard": "Dashboard"
 }

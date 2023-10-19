@@ -1,9 +1,10 @@
 import React from 'react';
+import OutLoanList from '../../components/PrimarySetup/OutLoan/OutLoanList';
 
 const OutLoan = () => {
     return (
         <div>
-            OutLoan
+            <OutLoanList />
         </div>
     );
 };

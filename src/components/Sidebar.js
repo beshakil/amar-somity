@@ -127,13 +127,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 {t('dashboard')}
               </NavLink>
 
-              <SidebarLinkGroup activeCondition={pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking'}>
+              <SidebarLinkGroup activeCondition={pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/somity-or-group-setup' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/director-list' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/somity-or-group-setup' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking' ? 'bg-graydark dark:bg-meta-4' : "")}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded
@@ -146,28 +146,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                       </NavLink>
                       <div className={`translate  transform overflow-hidden ${!open && 'hidden'}`}>
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/adduser"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')}>
-                              <FaUserPlus className={`text-lg ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[4px]"}`} />
-                              {t('addNew')}
-                            </NavLink>
-                          </li>
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/userlist"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')}>
-                              <PiUserListFill className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('userList')}
-                            </NavLink>
-                          </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
                               to="/branch-setup"
@@ -220,32 +198,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')}>
                               <FaUserFriends className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('StaffList')}
+                              {t('AddDirectorList')}
                             </NavLink>
                           </li>
 
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/area-list"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')}>
-                              <FaMapLocationDot className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('AreaList')}
-                            </NavLink>
-                          </li>
-                          <li className={`${banglaFontClass}`}>
-                            <NavLink
-                              to="/director-list"
-                              onClick={handleSideMenu}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')}>
-                              <FaUserShield className={`text-xl ${currentLanguage === 'bn' ? "-mt-[5px]" : "-mt-[2px]"}`} />
-                              {t('DirectorList')}
-                            </NavLink>
-                          </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
                               to="/out-loan"

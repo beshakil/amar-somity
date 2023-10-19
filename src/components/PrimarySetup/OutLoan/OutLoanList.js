@@ -1,41 +1,19 @@
 import { usePagination } from "@table-library/react-table-library/pagination";
-import {
-    Table
-} from "@table-library/react-table-library/table";
+import { Table } from "@table-library/react-table-library/table";
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
-import { RxDropdownMenu } from "react-icons/rx";
 import OutsideClickHandler from 'react-outside-click-handler';
-import AddStaff from "./AddStaff";
+import AddOutLoan from "./AddOutLoan";
 
 const nodes = [
     {
         id: '1',
+        mobile: '0188',
         paymentOption: 'Bkash',
-        staffName: "Shakil Ahmed",
-        designation: "Manager",
-        joiningDate: "10/19/2023",
-        fatherName: "Mozammel Haq",
-        motherName: "Shirin Akter",
-        mobile: "01303263591",
-        email: "z1Fq3@example.com",
-        nid: "123456789",
-        address: "Uttara, Dhaka",
-        image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-        salary: "20000",
-        securityMoney: "20000",
-        houseRent: "1000",
-        medicalAllowance: "100",
-        travelAllowance: "100",
-        internetAllowance: "100",
-        group: "Main Branch",
-        userName: "andormohol4",
-        password: "123456",
-        status: "Active",
     },
     {
         id: '2',
@@ -50,7 +28,7 @@ const nodes = [
 ]
 
 
-const StaffList = () => {
+const OutLoanList = () => {
 
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
@@ -66,8 +44,6 @@ const StaffList = () => {
     const [itemToDelete, setItemToDelete] = React.useState(null);
     const [itemToEdit, setItemToEdit] = React.useState(null);
     const [selectedValue, setSelectedValue] = React.useState('');
-    const [selectedUserTypeValue, setSelectedUserTypeValue] = React.useState('');
-    const [selectedUserStatus, setSelectedUserStatus] = React.useState('');
 
     const generateId = () => {
         return new Date().getTime().toString();
@@ -75,27 +51,8 @@ const StaffList = () => {
 
     const [formValues, setFormValues] = React.useState({
         id: generateId(),
-        staffName: "",
-        designation: "",
-        joiningDate: "",
-        fatherName: "",
-        motherName: "",
-        mobile: "",
-        email: "",
-        nid: "",
-        address: "",
-        image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-        salary: "",
-        securityMoney: "20000",
-        houseRent: "",
-        medicalAllowance: "",
-        travelAllowance: "",
-        internetAllowance: "",
-        group: selectedValue,
-        userType: selectedUserTypeValue,
-        userName: "",
-        password: "",
-        status: selectedUserStatus,
+        mobile: '',
+        paymentOption: selectedValue,
     });
 
     const SuccessNotify = () => toast.success(
@@ -123,68 +80,29 @@ const StaffList = () => {
         setSelectedValue(value);
         setFormValues({
             ...formValues,
-            group: value,
-        });
-    };
-
-    const handleSelectUserTypeChange = (event) => {
-        const { value } = event.target;
-        setSelectedUserTypeValue(value);
-        setFormValues({
-            ...formValues,
-            userType: value,
-        });
-    };
-
-    const handleUserStatus = (event) => {
-        const { value } = event.target;
-        setSelectedUserStatus(value);
-        setFormValues({
-            ...formValues,
-            status: value,
+            paymentOption: value,
         });
     };
 
 
-    const handleAdd = (e) => {
-        e.preventDefault()
-        const newId = generateId()
-        const newData = [{ id: newId, ...formValues }, ...data.nodes];
-        setData({ nodes: newData });
-        // setFormValues({ mobile: '', paymentOption: '' });
-        SuccessNotify();
-        addPopupClose();
-
+    const handleAdd = () => {
+        if (formValues.mobile && formValues.paymentOption) {
+            const newId = generateId()
+            const newData = [{ id: newId, ...formValues }, ...data.nodes];
+            setData({ nodes: newData });
+            setFormValues({ mobile: '', paymentOption: '' });
+            SuccessNotify();
+            addPopupClose();
+        }
     };
-
-    console.log('formValues', formValues)
 
     const handleEdit = (id) => {
         const item = data.nodes.find((node) => node.id === id);
         setItemToEdit(item);
         setFormValues({
             id: item.id,
-            staffName: item.staffName,
-            designation: item.designation,
-            joiningDate: item.joiningDate,
-            fatherName: item.fatherName,
-            motherName: item.motherName,
             mobile: item.mobile,
-            email: item.email,
-            nid: item.nid,
-            address: item.address,
-            image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-            salary: item.salary,
-            securityMoney: "20000",
-            houseRent: item.houseRent,
-            medicalAllowance: item.medicalAllowance,
-            travelAllowance: item.travelAllowance,
-            internetAllowance: item.internetAllowance,
-            group: item.group,
-            userType: item.userType,
-            userName: item.userName,
-            password: item.password,
-            status: item.status,
+            paymentOption: item.paymentOption,
         });
         setAddPopup(true);
     };
@@ -325,7 +243,7 @@ const StaffList = () => {
 
     return (
         <>
-            <AddStaff
+            <AddOutLoan
                 handleAdd={handleAdd}
                 formValues={formValues}
                 setFormValues={setFormValues}
@@ -337,10 +255,6 @@ const StaffList = () => {
                 handleSubmitEdit={handleSubmitEdit}
                 handleSelectChange={handleSelectChange}
                 selectedValue={selectedValue}
-                selectedUserTypeValue={selectedUserTypeValue}
-                handleSelectUserTypeChange={handleSelectUserTypeChange}
-                selectedUserStatus={selectedUserStatus}
-                handleUserStatus={handleUserStatus}
             />
             {/* <button type="button" onClick={handleDownloadCsv}>
                 Download as CSV
@@ -368,34 +282,10 @@ const StaffList = () => {
                                 <tr className="bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Photo')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('StaffName')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Designation')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('UserType')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('JoiningDate')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('mobileNumber')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Salary')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('SecurityMoney')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Group')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Status')}
+                                        {t('PaymentMethod')}
                                     </th>
                                 </tr>
                             </thead>
@@ -403,45 +293,20 @@ const StaffList = () => {
                                 {tableList.map((item) => (
                                     <tr key={item.id} className="text-center">
                                         <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            {/* <RxDropdownMenu /> */}
                                             <div className="flex gap-2 justify-center">
                                                 <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
                                                     <BiSolidEdit className='text-base' />
                                                 </button>
-                                                {/* <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
+                                                <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
                                                     <BiTrash className='text-base' />
-                                                </button> */}
+                                                </button>
                                             </div>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark flex justify-center">
-                                            <img className="w-8 h-8" src="https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp" />
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.staffName}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.designation}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">Super Admin</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.joiningDate}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.mobile}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.salary}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">1000</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">Uttara</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.status}</p>
+                                            <p className=" dark:text-white">{item.paymentOption}</p>
                                         </td>
                                     </tr>
                                 ))}
@@ -500,4 +365,4 @@ const StaffList = () => {
     );
 };
 
-export default StaffList;
+export default OutLoanList;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { MdAddCircle, MdClose } from "react-icons/md";
+import { MdAddCircle, MdClose, MdKeyboardArrowDown } from "react-icons/md";
 import OutsideClickHandler from 'react-outside-click-handler';
 
-const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup, addPopupClose, itemToEdit, handleSubmitEdit, selectedValue, handleSelectChange }) => {
+const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup, addPopupClose, itemToEdit, handleSubmitEdit, selectedValue, handleSelectChange, selectedUserTypeValue, handleSelectUserTypeChange, selectedUserStatus, handleUserStatus }) => {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
     const banglaFontClass = currentLanguage === 'bn' ? 'font-bangla' : 'font-satoshi';
@@ -13,7 +13,7 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
             <div className='pb-6 pt-3 md:pt-0'>
                 <div className='flex justify-between items-center'>
                     <div className={`${banglaFontClass} text-lg md:text-[28px] font-bold`}>
-                        {t('AddList')}
+                        {t('AddDirectorList')}
                     </div>
                     <button onClick={addPopupOpen} className='flex gap-2 py-1 md:py-2 px-2 md:px-4 bg-primary text-white items-center'>
                         <MdAddCircle className='text-sm md:text-xl' />
@@ -25,7 +25,7 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                 addPopup === true ?
                     <div className='backWrapData' >
                         <OutsideClickHandler onOutsideClick={addPopupClose}>
-                            <div className='w-[320px] md:w-[1200px] bg-white dark:bg-graydark p-5 rounded-md animate__animated animate__zoomIn animate__faster overflow-auto'>
+                            <form className='w-[320px] md:w-[1200px] bg-white dark:bg-graydark p-5 rounded-md animate__animated animate__zoomIn animate__faster overflow-auto' onSubmit={itemToEdit ? handleSubmitEdit : handleAdd}>
                                 <div className='flex justify-between items-center border-b border-stroke pb-2'>
                                     <div>
                                         {itemToEdit ? (
@@ -40,7 +40,7 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                         </button>
                                     </div>
                                 </div>
-                                <div className='h-[450px] md:h-auto overflow-auto'>
+                                <div className='h-[450px] md:h-[400px] overflow-auto'>
                                     <div className='flex flex-col md:flex-row gap-2 md:gap-6 justify-between py-2 pt-5'>
                                         <div className='w-full md:w-1/2'>
                                             <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('StaffName')} <span className="text-meta-1">*</span></label>
@@ -48,22 +48,22 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.staffName}
+                                                onChange={(e) => setFormValues({ ...formValues, staffName: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
 
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('Designation')} <span className="text-meta-1">*</span></label>
-                                            <select
-                                                value={selectedValue}
-                                                onChange={handleSelectChange}
-                                                className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${banglaFontClass}`}>
-                                                <option value="" className={`${banglaFontClass}`}>{t('PaymentSelect')}</option>
-                                                <option value="Bkash" className={`${banglaFontClass}`}>{t('Bkash')}</option>
-                                                <option value="Nagad" className={`${banglaFontClass}`}>{t('Nagad')}</option>
-                                            </select>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('position')}/{t('Designation')} <span className="text-meta-1">*</span></label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="mobile"
+                                                value={formValues.designation}
+                                                onChange={(e) => setFormValues({ ...formValues, designation: e.target.value })}
+                                                className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
+                                            />
                                         </div>
 
                                         <div className='w-full md:w-1/2'>
@@ -73,8 +73,8 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 type="date"
                                                 name="date"
                                                 id="date"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.joiningDate}
+                                                onChange={(e) => setFormValues({ ...formValues, joiningDate: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -84,8 +84,8 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.nid}
+                                                onChange={(e) => setFormValues({ ...formValues, nid: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -94,22 +94,20 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                         <div className='w-full md:w-1/2'>
                                             <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('father')}</label>
                                             <input
-                                                required
                                                 type="text"
-                                                name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                name="father"
+                                                value={formValues.fatherName}
+                                                onChange={(e) => setFormValues({ ...formValues, fatherName: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
                                         <div className='w-full md:w-1/2'>
                                             <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('mother')}</label>
                                             <input
-                                                required
                                                 type="text"
-                                                name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                name="mother"
+                                                value={formValues.motherName}
+                                                onChange={(e) => setFormValues({ ...formValues, motherName: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -129,9 +127,9 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                             <input
                                                 required
                                                 type="text"
-                                                name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                name="email"
+                                                value={formValues.email}
+                                                onChange={(e) => setFormValues({ ...formValues, email: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -143,8 +141,8 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.address}
+                                                onChange={(e) => setFormValues({ ...formValues, address: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -154,8 +152,8 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.salary}
+                                                onChange={(e) => setFormValues({ ...formValues, salary: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -165,19 +163,19 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.houseRent}
+                                                onChange={(e) => setFormValues({ ...formValues, houseRent: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('MedicalAllowance')} <span className="text-meta-1">*</span></label>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('MedicalAllowance')} </label>
                                             <input
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.medicalAllowance}
+                                                onChange={(e) => setFormValues({ ...formValues, medicalAllowance: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -189,8 +187,8 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.travelAllowance}
+                                                onChange={(e) => setFormValues({ ...formValues, travelAllowance: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -200,54 +198,61 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.internetAllowance}
+                                                onChange={(e) => setFormValues({ ...formValues, internetAllowance: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('Group')}</label>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('Group')} <span className="text-meta-1">*</span></label>
                                             <select
                                                 value={selectedValue}
                                                 onChange={handleSelectChange}
                                                 className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${banglaFontClass}`}>
-                                                <option value="" className={`${banglaFontClass}`}>{t('PaymentSelect')}</option>
-                                                <option value="Bkash" className={`${banglaFontClass}`}>{t('Bkash')}</option>
-                                                <option value="Nagad" className={`${banglaFontClass}`}>{t('Nagad')}</option>
+                                                <option value="" className={`${banglaFontClass}`}>{t('Group')} {t('selectType')}</option>
+                                                <option value="Main Branch" className={`${banglaFontClass}`}>Main Branch</option>
+                                                <option value="Uttara Branch" className={`${banglaFontClass}`}>Uttara Branch</option>
+                                                <option value="Mirpur Branch" className={`${banglaFontClass}`}>Mirpur Branch</option>
                                             </select>
                                         </div>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('UserType')}</label>
-                                            <select
-                                                value={selectedValue}
-                                                onChange={handleSelectChange}
-                                                className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${banglaFontClass}`}>
-                                                <option value="" className={`${banglaFontClass}`}>{t('PaymentSelect')}</option>
-                                                <option value="Bkash" className={`${banglaFontClass}`}>{t('Bkash')}</option>
-                                                <option value="Nagad" className={`${banglaFontClass}`}>{t('Nagad')}</option>
-                                            </select>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('UserType')} <span className="text-meta-1">*</span></label>
+                                            <div className="relative z-20 bg-transparent dark:bg-form-input">
+                                                <select
+                                                    value={selectedUserTypeValue}
+                                                    onChange={handleSelectUserTypeChange}
+                                                    className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${banglaFontClass}`}>
+                                                    <option value="" className={`${banglaFontClass}`}>{t('UserType')} {t('selectType')}</option>
+                                                    <option value="Admin" className={`${banglaFontClass}`}>{t('manager')} / Admin</option>
+                                                    <option value="Depositor" className={`${banglaFontClass}`}>{t('depositor')}</option>
+                                                    <option value="Field Assistant" className={`${banglaFontClass}`}>{t('fieldAssistant')}</option>
+                                                </select>
+                                                <span className="absolute top-1/2 right-0 z-30 -translate-y-1/2">
+                                                    <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-2xl`} />
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className='flex flex-col md:flex-row gap-2 md:gap-6 justify-between py-2 pt-5'>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('userName')}</label>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('userName')} <span className="text-meta-1">*</span></label>
                                             <input
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.userName}
+                                                onChange={(e) => setFormValues({ ...formValues, userName: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('password')}</label>
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('password')} <span className="text-meta-1">*</span></label>
                                             <input
                                                 required
                                                 type="text"
                                                 name="mobile"
-                                                value={formValues.mobile}
-                                                onChange={(e) => setFormValues({ ...formValues, mobile: e.target.value })}
+                                                value={formValues.password}
+                                                onChange={(e) => setFormValues({ ...formValues, password: e.target.value })}
                                                 className={`${banglaFontClass} w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
                                             />
                                         </div>
@@ -259,16 +264,20 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                             />
                                         </div>
                                         <div className='w-full md:w-1/2'>
-                                            <label className={`mb-1 block font-bold text-white dark:text-white ${banglaFontClass}`}>{t('submit')}</label>
-                                            {itemToEdit ? (
-                                                <button onClick={handleSubmitEdit} className='w-full border-none border border-stroke rounded-md bg-meta-3 text-white py-1.5 px-5'>
-                                                    <p className={`${banglaFontClass} text-base text-center md:text-lg`}>{t('EditSubmit')}</p>
-                                                </button>
-                                            ) : (
-                                                <button onClick={handleAdd} className='w-full border-none border border-stroke rounded-md bg-meta-3 text-white py-1.5 px-5'>
-                                                    <p className={`${banglaFontClass} text-base text-center md:text-lg`}>{t('submit')}</p>
-                                                </button>
-                                            )}
+                                            <label className={`mb-1 block font-bold dark:text-white ${banglaFontClass}`}>{t('Status')} <span className="text-meta-1">*</span></label>
+                                            <div className="relative z-20 bg-transparent dark:bg-form-input">
+                                                <select
+                                                    value={selectedUserStatus}
+                                                    onChange={handleUserStatus}
+                                                    className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-2 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${banglaFontClass}`}>
+                                                    <option value="" className={`${banglaFontClass}`}>{t('Status')} {t('selectType')}</option>
+                                                    <option value="Active" className={`${banglaFontClass}`}>{t('Active')}</option>
+                                                    <option value="Deactivate" className={`${banglaFontClass}`}>{t('Deactivate')}</option>
+                                                </select>
+                                                <span className="absolute top-1/2 right-0 z-30 -translate-y-1/2">
+                                                    <MdKeyboardArrowDown className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-2xl`} />
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -283,8 +292,20 @@ const AddStaff = ({ handleAdd, formValues, setFormValues, addPopupOpen, addPopup
                                             </button>
                                         )}
                                     </div> */}
+
                                 </div>
-                            </div>
+                                <div className='flex justify-end pt-4'>
+                                    {itemToEdit ? (
+                                        <button className='w-full border-none border border-stroke rounded-md bg-meta-3 text-white py-1.5 px-5'>
+                                            <p className={`${banglaFontClass} text-base text-center md:text-lg`}>{t('EditSubmit')}</p>
+                                        </button>
+                                    ) : (
+                                        <button className='w-full border-none border border-stroke rounded-md bg-meta-3 text-white py-1.5 px-5'>
+                                            <p className={`${banglaFontClass} text-base text-center md:text-lg`}>{t('submit')}</p>
+                                        </button>
+                                    )}
+                                </div>
+                            </form>
                         </OutsideClickHandler>
                     </div>
                     : ""

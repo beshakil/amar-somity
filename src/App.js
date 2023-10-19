@@ -42,7 +42,7 @@ function App() {
             />
           ))}
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Suspense fallback={<Loader />}><NotFound /></Suspense>} />
       </Routes>
     </>
   );

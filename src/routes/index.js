@@ -1,14 +1,9 @@
 import { lazy } from 'react';
 import CustomerDetailsData from '../components/Customer/CustomerDetailsData';
 
-const AddUser = lazy(() => import('../pages/User/AddUser'));
-const UserList = lazy(() => import('../pages/User/UserList'));
-
 const BranchSetup = lazy(() => import('../pages/PrimarySetup/BranchSetup'));
 const StaffSetup = lazy(() => import('../pages/PrimarySetup/StaffSetup'));
-const AreaList = lazy(() => import('../pages/PrimarySetup/AreaList'));
 const SomityAndGroupSetup = lazy(() => import('../pages/PrimarySetup/SomityAndGroupSetup'));
-const DirectorList = lazy(() => import('../pages/PrimarySetup/DirectorList'));
 const BankSetup = lazy(() => import('../pages/PrimarySetup/BankSetup'));
 const MobileBanking = lazy(() => import('../pages/PrimarySetup/MobileBanking'));
 const OutLoan = lazy(() => import('../pages/PrimarySetup/OutLoan'));
@@ -88,16 +83,6 @@ const Profile = lazy(() => import('../pages/Profile'));
 
 const coreRoutes = [
   {
-    path: '/adduser',
-    title: 'Add Users',
-    component: AddUser,
-  },
-  {
-    path: '/userlist',
-    title: 'User List',
-    component: UserList,
-  },
-  {
     path: '/branch-setup',
     title: 'Branch Setup',
     component: BranchSetup,
@@ -108,19 +93,9 @@ const coreRoutes = [
     component: StaffSetup,
   },
   {
-    path: '/area-list',
-    title: 'Area List',
-    component: AreaList,
-  },
-  {
     path: '/somity-or-group-setup',
     title: 'Somity/Group Setup',
     component: SomityAndGroupSetup,
-  },
-  {
-    path: '/director-list',
-    title: 'Director List',
-    component: DirectorList,
   },
   {
     path: '/out-loan',
