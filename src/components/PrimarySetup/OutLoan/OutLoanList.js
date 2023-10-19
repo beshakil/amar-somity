@@ -12,18 +12,39 @@ import AddOutLoan from "./AddOutLoan";
 const nodes = [
     {
         id: '1',
-        mobile: '0188',
-        paymentOption: 'Bkash',
+        branchName: 'Uttara Branch',
+        accountName: 'Test Account',
+        companyName: 'Classic IT',
+        mobile: '01303263591',
+        occupation: 'Business Man',
+        balance: '10.00',
+        interest: '20.00',
+        status: 'Active',
+        address: 'Uttara, Dhaka',
     },
     {
         id: '2',
-        mobile: '0155',
-        paymentOption: 'Nagad',
+        branchName: 'Uttara Branch',
+        accountName: 'Test Account',
+        companyName: 'Classic IT',
+        mobile: '01303263591',
+        occupation: 'Business Man',
+        balance: '30.00',
+        interest: '40.00',
+        status: 'Active',
+        address: 'Uttara, Dhaka',
     },
     {
         id: '3',
+        branchName: 'Uttara Branch',
+        accountName: 'Test Account',
+        companyName: 'Classic IT',
         mobile: '01303263591',
-        paymentOption: 'Upay',
+        occupation: 'Business Man',
+        balance: '50.00',
+        interest: '60.00',
+        status: 'Deactivate',
+        address: 'Uttara, Dhaka',
     },
 ]
 
@@ -37,8 +58,6 @@ const OutLoanList = () => {
     const [data, setData] = React.useState({ nodes });
     const [search, setSearch] = React.useState('');
 
-    console.log('finalData', data)
-
     const [addPopup, setAddPopup] = React.useState(false);
     const [deletePopup, setDeletePopup] = React.useState(false);
     const [itemToDelete, setItemToDelete] = React.useState(null);
@@ -51,8 +70,16 @@ const OutLoanList = () => {
 
     const [formValues, setFormValues] = React.useState({
         id: generateId(),
+        branchName: '',
+        accountName: '',
+        companyName: '',
         mobile: '',
-        paymentOption: selectedValue,
+        occupation: '',
+        balance: '',
+        interest: '',
+        status: '',
+        address: '',
+        status: selectedValue,
     });
 
     const SuccessNotify = () => toast.success(
@@ -80,20 +107,20 @@ const OutLoanList = () => {
         setSelectedValue(value);
         setFormValues({
             ...formValues,
-            paymentOption: value,
+            status: value,
         });
     };
 
 
     const handleAdd = () => {
-        if (formValues.mobile && formValues.paymentOption) {
-            const newId = generateId()
-            const newData = [{ id: newId, ...formValues }, ...data.nodes];
-            setData({ nodes: newData });
-            setFormValues({ mobile: '', paymentOption: '' });
-            SuccessNotify();
-            addPopupClose();
-        }
+
+        const newId = generateId()
+        const newData = [{ id: newId, ...formValues }, ...data.nodes];
+        setData({ nodes: newData });
+        // setFormValues({ mobile: '', paymentOption: '' });
+        SuccessNotify();
+        addPopupClose();
+
     };
 
     const handleEdit = (id) => {
@@ -102,7 +129,15 @@ const OutLoanList = () => {
         setFormValues({
             id: item.id,
             mobile: item.mobile,
-            paymentOption: item.paymentOption,
+            branchName: item.branchName,
+            accountName: item.accountName,
+            companyName: item.companyName,
+            mobile: item.mobile,
+            occupation: item.occupation,
+            balance: item.balance,
+            interest: item.interest,
+            address: item.address,
+            status: item.status,
         });
         setAddPopup(true);
     };
@@ -117,7 +152,14 @@ const OutLoanList = () => {
             updatedData[index] = {
                 id: itemToEdit.id,
                 mobile: formValues.mobile,
-                paymentOption: formValues.paymentOption,
+                branchName: formValues.branchName,
+                accountName: formValues.accountName,
+                companyName: formValues.companyName,
+                occupation: formValues.occupation,
+                balance: formValues.balance,
+                interest: formValues.interest,
+                address: formValues.address,
+                status: formValues.status,
             };
 
             // Update the data and close the edit popup
@@ -125,7 +167,6 @@ const OutLoanList = () => {
             SuccessNotify();
             setAddPopup(false);
             setItemToEdit(null);
-            setFormValues({ mobile: '', paymentOption: '' });
         }
     };
 
@@ -282,10 +323,28 @@ const OutLoanList = () => {
                                 <tr className="bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('mobileNumber')}
+                                        {t('BranchName')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('PaymentMethod')}
+                                        {t('AccountName')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('CompanyName')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('mobile')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Occupation')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Balance')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Interest')}
+                                    </th>
+                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
+                                        {t('Status')}
                                     </th>
                                 </tr>
                             </thead>
@@ -303,10 +362,28 @@ const OutLoanList = () => {
                                             </div>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.branchName}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.accountName}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.companyName}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.mobile}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.paymentOption}</p>
+                                            <p className=" dark:text-white">{item.occupation}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.balance}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.interest}</p>
+                                        </td>
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <p className=" dark:text-white">{item.status}</p>
                                         </td>
                                     </tr>
                                 ))}

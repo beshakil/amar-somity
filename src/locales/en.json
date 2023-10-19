@@ -147,7 +147,6 @@
   "SMSReport": "SMS Report",
   "BankName": "Bank Name",
   "AccountNo": "Account No",
-  "Balance": "Balance",
   "NewBankAdd": "New Bank Add",
   "NewBranchAdd": "New Branch Add",
   "NewMobileAdd": "New Mobile Add",
@@ -197,5 +196,11 @@
   "Photo": "Photo",
   "Active": "Active",
   "Deactivate": "Deactivate",
+  "AccountName": "Account Name",
+  "CompanyName": "Company Name",
+  "Occupation": "Occupation",
+  "Balance": "Balance",
+  "Interest": "Interest",
+  "New": "New",
   "dashboard": "Dashboard"
 }

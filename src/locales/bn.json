@@ -156,7 +156,6 @@
   "SMSReport": "SMS রিপোর্ট",
   "BankName": "ব্যাংকের নাম",
   "AccountNo": "অ্যাকাউন্ট নং",
-  "Balance": "ব্যালান্স",
   "NewBankAdd": "নতুন ব্যাংক যোগ",
   "NewBranchAdd": "নতুন শাখার যোগ",
   "BankNameWithBranchName": "ব্যাংক শাখার নাম সহ ব্যাংক নাম",
@@ -207,9 +206,10 @@
   "Active": "একটিভ",
   "Deactivate": "ডি-এক্টিভ",
   "AccountName": "অ্যাকাউন্ট নাম",
-  "CompnayName": "কোম্পানি নাম",
+  "CompanyName": "কোম্পানি নাম",
   "Occupation": "পেশা",
-  "Balanace": "ব্যালান্স",
+  "Balance": "ব্যালান্স",
   "Interest": "সুদ",
+  "New": "নতুন",
   "dashboard": "ড্যাশবোর্ড"
 }
