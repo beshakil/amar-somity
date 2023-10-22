@@ -127,13 +127,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 {t('dashboard')}
               </NavLink>
 
-              <SidebarLinkGroup activeCondition={pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/somity-or-group-setup' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking'}>
+              <SidebarLinkGroup activeCondition={pathname === '/branch-setup' || pathname === '/director-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/somity-or-group-setup' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking'}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/branch-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/somity-or-group-setup' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking' ? 'bg-graydark dark:bg-meta-4' : "")}`}
+                        className={`${banglaFontClass} group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/branch-setup' || pathname === '/director-setup' || pathname === '/staff-setup' || pathname === '/area-list' || pathname === '/somity-or-group-setup' || pathname === '/out-loan' || pathname === '/loan-category' || pathname === '/voucher-category' || pathname === '/fdr-scheme' || pathname === '/dps-scheme' || pathname === '/user-type' || pathname === '/bank-setup' || pathname === 'mobile-banking' ? 'bg-graydark dark:bg-meta-4' : "")}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded
@@ -192,13 +192,24 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                           <li className={`${banglaFontClass}`}>
                             <NavLink
+                              to="/director-setup"
+                              onClick={handleSideMenu}
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')}>
+                              <FaUserShield className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
+                              {t('AddDirectorList')}
+                            </NavLink>
+                          </li>
+                          <li className={`${banglaFontClass}`}>
+                            <NavLink
                               to="/staff-setup"
                               onClick={handleSideMenu}
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')}>
                               <FaUserFriends className={`text-xl ${currentLanguage === 'bn' ? "-mt-[4px]" : "-mt-[2px]"}`} />
-                              {t('AddDirectorList')}
+                              {t('AddStaffList')}
                             </NavLink>
                           </li>
 

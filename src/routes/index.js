@@ -3,6 +3,7 @@ import CustomerDetailsData from '../components/Customer/CustomerDetailsData';
 
 const BranchSetup = lazy(() => import('../pages/PrimarySetup/BranchSetup'));
 const StaffSetup = lazy(() => import('../pages/PrimarySetup/StaffSetup'));
+const DirectorSetup = lazy(() => import('../pages/PrimarySetup/DirectorSetup'));
 const SomityAndGroupSetup = lazy(() => import('../pages/PrimarySetup/SomityAndGroupSetup'));
 const BankSetup = lazy(() => import('../pages/PrimarySetup/BankSetup'));
 const MobileBanking = lazy(() => import('../pages/PrimarySetup/MobileBanking'));
@@ -91,6 +92,11 @@ const coreRoutes = [
     path: '/staff-setup',
     title: 'Staff Setup',
     component: StaffSetup,
+  },
+  {
+    path: '/director-setup',
+    title: 'Director Setup',
+    component: DirectorSetup,
   },
   {
     path: '/somity-or-group-setup',
