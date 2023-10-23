@@ -1,6 +1,8 @@
 import { lazy } from 'react';
 import CustomerDetailsData from '../components/Customer/CustomerDetailsData';
 
+const OutLoanDetails = lazy(() => import('../components/PrimarySetup/OutLoan/OutLoanDetails'));
+
 const BranchSetup = lazy(() => import('../pages/PrimarySetup/BranchSetup'));
 const StaffSetup = lazy(() => import('../pages/PrimarySetup/StaffSetup'));
 const DirectorSetup = lazy(() => import('../pages/PrimarySetup/DirectorSetup'));
@@ -107,6 +109,11 @@ const coreRoutes = [
     path: '/out-loan',
     title: 'Out Loan',
     component: OutLoan,
+  },
+  {
+    path: '/out-loan/:id',
+    title: 'OutLoan Details',
+    component: OutLoanDetails,
   },
   {
     path: '/bank-setup',

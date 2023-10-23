@@ -203,5 +203,9 @@
   "Balance": "Balance",
   "Interest": "Interest",
   "New": "New",
+  "DirectorName": "Director Name",
+  "DirectorEdit": "Director Edit",
+  "AddNewDirector": "Add New Director",
+  "ExternalLoanTransactions": "External Loan Transactions",
   "dashboard": "Dashboard"
 }

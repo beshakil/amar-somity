@@ -212,5 +212,9 @@
   "Balance": "ব্যালান্স",
   "Interest": "সুদ",
   "New": "নতুন",
+  "DirectorName": "পরিচালক নাম",
+  "DirectorEdit": "পরিচালক এডিট",
+  "AddNewDirector": "নতুন পরিচালক যোগ",
+  "ExternalLoanTransactions": "বহি লোন লেনদেন",
   "dashboard": "ড্যাশবোর্ড"
 }

@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdPreview } from "react-icons/md";
 import { RxDropdownMenu } from "react-icons/rx";
 import OutsideClickHandler from 'react-outside-click-handler';
 import AddDirector from "./AddDirector";
@@ -15,24 +15,15 @@ import AddDirector from "./AddDirector";
 const nodes = [
     {
         id: '1',
-        paymentOption: 'Bkash',
-        staffName: "Shakil Ahmed",
+        directorName: "Shakil Ahmed",
         designation: "Manager",
         joiningDate: "10/19/2023",
-        fatherName: "Mozammel Haq",
-        motherName: "Shirin Akter",
         mobile: "01303263591",
         email: "z1Fq3@example.com",
         nid: "123456789",
         address: "Uttara, Dhaka",
-        image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-        salary: "20000",
-        securityMoney: "20000",
-        houseRent: "1000",
-        medicalAllowance: "100",
-        travelAllowance: "100",
-        internetAllowance: "100",
         group: "Main Branch",
+        image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
         userName: "andormohol4",
         password: "123456",
         status: "Active",
@@ -75,28 +66,21 @@ const DirectorList = () => {
 
     const [formValues, setFormValues] = React.useState({
         id: generateId(),
-        staffName: "",
+        directorName: "",
         designation: "",
         joiningDate: "",
-        fatherName: "",
-        motherName: "",
         mobile: "",
         email: "",
         nid: "",
         address: "",
         image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-        salary: "",
-        securityMoney: "20000",
-        houseRent: "",
-        medicalAllowance: "",
-        travelAllowance: "",
-        internetAllowance: "",
         group: selectedValue,
-        userType: selectedUserTypeValue,
         userName: "",
         password: "",
         status: selectedUserStatus,
     });
+
+
 
     const SuccessNotify = () => toast.success(
         <p className={`${banglaFontClass} text-xl`}>
@@ -164,24 +148,15 @@ const DirectorList = () => {
         setItemToEdit(item);
         setFormValues({
             id: item.id,
-            staffName: item.staffName,
+            directorName: item.directorName,
             designation: item.designation,
             joiningDate: item.joiningDate,
-            fatherName: item.fatherName,
-            motherName: item.motherName,
             mobile: item.mobile,
             email: item.email,
             nid: item.nid,
             address: item.address,
             image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-            salary: item.salary,
-            securityMoney: "20000",
-            houseRent: item.houseRent,
-            medicalAllowance: item.medicalAllowance,
-            travelAllowance: item.travelAllowance,
-            internetAllowance: item.internetAllowance,
             group: item.group,
-            userType: item.userType,
             userName: item.userName,
             password: item.password,
             status: item.status,
@@ -371,25 +346,16 @@ const DirectorList = () => {
                                         {t('Photo')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('StaffName')}
+                                        {t('DirectorName')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('Designation')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('UserType')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('JoiningDate')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('mobileNumber')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Salary')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('SecurityMoney')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('Group')}
@@ -405,25 +371,28 @@ const DirectorList = () => {
                                         <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             {/* <RxDropdownMenu /> */}
                                             <div className="flex gap-2 justify-center">
-                                                <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
+                                                <NavLink to={`/out-loan/${item.id}`}>
+                                                    <button className="flex gap-1 items-center px-1 py-1 bg-meta-3 text-white rounded-md text-base">
+                                                        <MdPreview className='text-lg' />
+                                                    </button>
+                                                </NavLink>
+                                                <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-1 py-1 bg-primary text-white rounded-md text-base">
                                                     <BiSolidEdit className='text-base' />
                                                 </button>
-                                                {/* <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
+                                                <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-1 py-1 bg-danger text-white rounded-md text-base">
                                                     <BiTrash className='text-base' />
-                                                </button> */}
+                                                </button>
+
                                             </div>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark flex justify-center">
                                             <img className="w-8 h-8" src="https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp" />
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.staffName}</p>
+                                            <p className=" dark:text-white">{item.directorName}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.designation}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">Super Admin</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.joiningDate}</p>
@@ -432,13 +401,7 @@ const DirectorList = () => {
                                             <p className=" dark:text-white">{item.mobile}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.salary}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">1000</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">Uttara</p>
+                                            <p className=" dark:text-white">{item.group}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.status}</p>

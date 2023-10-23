@@ -5,9 +5,10 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdPreview } from "react-icons/md";
 import OutsideClickHandler from 'react-outside-click-handler';
 import AddOutLoan from "./AddOutLoan";
+import { NavLink } from "react-router-dom";
 
 const nodes = [
     {
@@ -20,7 +21,18 @@ const nodes = [
         balance: '10.00',
         interest: '20.00',
         status: 'Active',
-        address: 'Uttara, Dhaka',
+        address: 'Uttara, Dhaka, 1230',
+        loanDetails: [
+            {
+                id: '1',
+                loanName: 'Test Loan',
+                loanType: 'Personal Loan',
+                loanAmount: '10000',
+                interest: '2000',
+                duration: '6',
+                status: 'Active',
+            }
+        ]
     },
     {
         id: '2',
@@ -33,6 +45,17 @@ const nodes = [
         interest: '40.00',
         status: 'Active',
         address: 'Uttara, Dhaka',
+        loanDetails: [
+            {
+                id: '1',
+                loanName: 'Test Loan',
+                loanType: 'Personal Loan',
+                loanAmount: '10000',
+                interest: '2000',
+                duration: '6',
+                status: 'Active',
+            }
+        ]
     },
     {
         id: '3',
@@ -350,19 +373,24 @@ const OutLoanList = () => {
                             </thead>
                             <tbody className="bg-white dark:bg-black">
                                 {tableList.map((item) => (
-                                    <tr key={item.id} className="text-center">
+                                    <tr key={item.id} className="text-center hover:bg-gray-3">
                                         <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <div className="flex gap-2 justify-center">
-                                                <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-primary text-white rounded-md text-base">
+                                                <NavLink to={`/out-loan/${item.id}`}>
+                                                    <button className="flex gap-1 items-center px-1 py-1 bg-meta-3 text-white rounded-md text-base">
+                                                        <MdPreview className='text-lg' />
+                                                    </button>
+                                                </NavLink>
+                                                <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-1 py-1 bg-primary text-white rounded-md text-base">
                                                     <BiSolidEdit className='text-base' />
                                                 </button>
-                                                <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-2 md:px-2 py-1 bg-danger text-white rounded-md text-base">
+                                                <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-1 py-1 bg-danger text-white rounded-md text-base">
                                                     <BiTrash className='text-base' />
                                                 </button>
                                             </div>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.branchName}</p>
+                                            <NavLink to={`/out-loan/${item.id}`}><p className=" dark:text-white">{item.branchName}</p></NavLink>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.accountName}</p>
