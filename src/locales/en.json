@@ -207,5 +207,11 @@
   "DirectorEdit": "Director Edit",
   "AddNewDirector": "Add New Director",
   "ExternalLoanTransactions": "External Loan Transactions",
+  "AddNewLoanCategory": "Add New Loan Category",
+  "CategoryName": "Category Name",
+  "InterestRate": "Interest Rate",
+  "LoanDuration": "Loan Duration",
+  "MaxLoanAmount": "Max Loan Amount",
+  "CategoryType": "Category Type",
   "dashboard": "Dashboard"
 }

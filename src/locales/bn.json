@@ -216,5 +216,11 @@
   "DirectorEdit": "পরিচালক এডিট",
   "AddNewDirector": "নতুন পরিচালক যোগ",
   "ExternalLoanTransactions": "বহি লোন লেনদেন",
+  "AddNewLoanCategory": "নতুন ঋণ ক্যাটাগরি যোগ",
+  "CategoryName": "ক্যাটাগরির নাম",
+  "InterestRate": "ইন্টারেস্ট রেট",
+  "LoanDuration": "ঋণের মেয়াদ",
+  "MaxLoanAmount": "সর্বোচ্চ ঋণের পরিমাণ",
+  "CategoryType": "ক্যাটাগরি টাইপ",
   "dashboard": "ড্যাশবোর্ড"
 }

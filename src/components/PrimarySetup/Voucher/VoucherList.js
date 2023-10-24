@@ -1,48 +1,17 @@
 import { usePagination } from "@table-library/react-table-library/pagination";
-import {
-    Table
-} from "@table-library/react-table-library/table";
+import { Table } from "@table-library/react-table-library/table";
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { MdClose, MdPreview } from "react-icons/md";
-import { RxDropdownMenu } from "react-icons/rx";
 import OutsideClickHandler from 'react-outside-click-handler';
-import AddDirector from "./AddDirector";
+import AddOutLoan from "./AddVoucher";
 import { NavLink } from "react-router-dom";
+import nodes from "./data";
 
-const nodes = [
-    {
-        id: '1',
-        directorName: "Shakil Ahmed",
-        designation: "Manager",
-        joiningDate: "10/19/2023",
-        mobile: "01303263591",
-        email: "z1Fq3@example.com",
-        nid: "123456789",
-        address: "Uttara, Dhaka",
-        group: "Main Branch",
-        image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-        userName: "andormohol4",
-        password: "123456",
-        status: "Active",
-    },
-    {
-        id: '2',
-        mobile: '0155',
-        paymentOption: 'Nagad',
-    },
-    {
-        id: '3',
-        mobile: '01303263591',
-        paymentOption: 'Upay',
-    },
-]
-
-
-const DirectorList = () => {
+const VoucherList = () => {
 
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
@@ -51,15 +20,12 @@ const DirectorList = () => {
     const [data, setData] = React.useState({ nodes });
     const [search, setSearch] = React.useState('');
 
-    console.log('finalData', data)
-
     const [addPopup, setAddPopup] = React.useState(false);
     const [deletePopup, setDeletePopup] = React.useState(false);
     const [itemToDelete, setItemToDelete] = React.useState(null);
     const [itemToEdit, setItemToEdit] = React.useState(null);
+    const [selectCategory, setSelectCategory] = React.useState('');
     const [selectedValue, setSelectedValue] = React.useState('');
-    const [selectedUserTypeValue, setSelectedUserTypeValue] = React.useState('');
-    const [selectedUserStatus, setSelectedUserStatus] = React.useState('');
 
     const generateId = () => {
         return new Date().getTime().toString();
@@ -67,21 +33,10 @@ const DirectorList = () => {
 
     const [formValues, setFormValues] = React.useState({
         id: generateId(),
-        directorName: "",
-        designation: "",
-        joiningDate: "",
-        mobile: "",
-        email: "",
-        nid: "",
-        address: "",
-        image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-        group: selectedValue,
-        userName: "",
-        password: "",
-        status: selectedUserStatus,
+        categoryName: '',
+        categoryTypes: selectCategory,
+        status: selectedValue,
     });
-
-
 
     const SuccessNotify = () => toast.success(
         <p className={`${banglaFontClass} text-xl`}>
@@ -103,27 +58,17 @@ const DirectorList = () => {
         setAddPopup(true)
     }
 
+    const handleCategoryTypeChange = (event) => {
+        const { value } = event.target;
+        setSelectCategory(value);
+        setFormValues({
+            ...formValues,
+            categoryTypes: value,
+        });
+    };
     const handleSelectChange = (event) => {
         const { value } = event.target;
         setSelectedValue(value);
-        setFormValues({
-            ...formValues,
-            group: value,
-        });
-    };
-
-    const handleSelectUserTypeChange = (event) => {
-        const { value } = event.target;
-        setSelectedUserTypeValue(value);
-        setFormValues({
-            ...formValues,
-            userType: value,
-        });
-    };
-
-    const handleUserStatus = (event) => {
-        const { value } = event.target;
-        setSelectedUserStatus(value);
         setFormValues({
             ...formValues,
             status: value,
@@ -131,35 +76,23 @@ const DirectorList = () => {
     };
 
 
-    const handleAdd = (e) => {
-        e.preventDefault()
+    const handleAdd = () => {
+
         const newId = generateId()
         const newData = [{ id: newId, ...formValues }, ...data.nodes];
         setData({ nodes: newData });
-        // setFormValues({ mobile: '', paymentOption: '' });
+        setFormValues({ categoryName: '', categoryTypes: '', status: '' });
         SuccessNotify();
         addPopupClose();
 
     };
 
-    console.log('formValues', formValues)
-
     const handleEdit = (id) => {
         const item = data.nodes.find((node) => node.id === id);
         setItemToEdit(item);
         setFormValues({
-            id: item.id,
-            directorName: item.directorName,
-            designation: item.designation,
-            joiningDate: item.joiningDate,
-            mobile: item.mobile,
-            email: item.email,
-            nid: item.nid,
-            address: item.address,
-            image: "https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp",
-            group: item.group,
-            userName: item.userName,
-            password: item.password,
+            categoryName: item.categoryName,
+            categoryTypes: item.categoryTypes,
             status: item.status,
         });
         setAddPopup(true);
@@ -174,8 +107,9 @@ const DirectorList = () => {
             const updatedData = [...data.nodes];
             updatedData[index] = {
                 id: itemToEdit.id,
-                mobile: formValues.mobile,
-                paymentOption: formValues.paymentOption,
+                categoryName: formValues.categoryName,
+                categoryTypes: formValues.categoryTypes,
+                status: formValues.status,
             };
 
             // Update the data and close the edit popup
@@ -183,7 +117,6 @@ const DirectorList = () => {
             SuccessNotify();
             setAddPopup(false);
             setItemToEdit(null);
-            setFormValues({ mobile: '', paymentOption: '' });
         }
     };
 
@@ -301,7 +234,7 @@ const DirectorList = () => {
 
     return (
         <>
-            <AddDirector
+            <AddOutLoan
                 handleAdd={handleAdd}
                 formValues={formValues}
                 setFormValues={setFormValues}
@@ -313,10 +246,8 @@ const DirectorList = () => {
                 handleSubmitEdit={handleSubmitEdit}
                 handleSelectChange={handleSelectChange}
                 selectedValue={selectedValue}
-                selectedUserTypeValue={selectedUserTypeValue}
-                handleSelectUserTypeChange={handleSelectUserTypeChange}
-                selectedUserStatus={selectedUserStatus}
-                handleUserStatus={handleUserStatus}
+                handleCategoryTypeChange={handleCategoryTypeChange}
+                selectCategory={selectCategory}
             />
             {/* <button type="button" onClick={handleDownloadCsv}>
                 Download as CSV
@@ -344,22 +275,10 @@ const DirectorList = () => {
                                 <tr className="bg-gray-2 dark:bg-meta-4 font-bold text-base text-center dark:text-white ">
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}></th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Photo')}
+                                        {t('CategoryType')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('DirectorName')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Designation')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('JoiningDate')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('mobileNumber')}
-                                    </th>
-                                    <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
-                                        {t('Group')}
+                                        {t('CategoryName')}
                                     </th>
                                     <th className={` ${banglaFontClass} py-3 px-2 border border-[#eee] dark:border-form-strokedark`}>
                                         {t('Status')}
@@ -368,41 +287,22 @@ const DirectorList = () => {
                             </thead>
                             <tbody className="bg-white dark:bg-black">
                                 {tableList.map((item) => (
-                                    <tr key={item.id} className="text-center">
+                                    <tr key={item.id} className="text-center hover:bg-gray-3">
                                         <td className=" border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            {/* <RxDropdownMenu /> */}
                                             <div className="flex gap-2 justify-center">
-                                                <NavLink to={`/out-loan/${item.id}`}>
-                                                    <button className="flex gap-1 items-center px-1 py-1 bg-meta-3 text-white rounded-md text-base">
-                                                        <MdPreview className='text-lg' />
-                                                    </button>
-                                                </NavLink>
                                                 <button onClick={() => handleEdit(item.id)} className="flex gap-1 items-center px-1 py-1 bg-primary text-white rounded-md text-base">
                                                     <BiSolidEdit className='text-base' />
                                                 </button>
                                                 <button onClick={() => handleRemoveData(item.id)} className="flex gap-1 items-center px-1 py-1 bg-danger text-white rounded-md text-base">
                                                     <BiTrash className='text-base' />
                                                 </button>
-
                                             </div>
                                         </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark flex justify-center">
-                                            <img className="w-8 h-8" src="https://i.ibb.co/wQ9wGtk/User-Profile-PNG-High-Quality-Image.webp" />
+                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
+                                            <NavLink to={`/out-loan/${item.id}`}><p className=" dark:text-white">{item.categoryTypes}</p></NavLink>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.directorName}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.designation}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.joiningDate}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.mobile}</p>
-                                        </td>
-                                        <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
-                                            <p className=" dark:text-white">{item.group}</p>
+                                            <p className=" dark:text-white">{item.categoryName}</p>
                                         </td>
                                         <td className="border border-[#eee] py-2 px-2 dark:border-strokedark">
                                             <p className=" dark:text-white">{item.status}</p>
@@ -464,4 +364,4 @@ const DirectorList = () => {
     );
 };
 
-export default DirectorList;
+export default VoucherList;
